@@ -1,3 +1,3 @@
 `Reserapi` is the dedicated backend for `Reservio`: an intuitive room booking application.
 
-It is made using laravel.
+`Reserapi` is made using laravel, and is strictly used for database-fetching only.
