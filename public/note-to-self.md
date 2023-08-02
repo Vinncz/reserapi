@@ -1,0 +1,1 @@
+- semua resources yg bakal ditampilin ke user ditaro di public path.

@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
+ * Note to self:
+ * -> Untuk setiap page yang lu mau tampilin, buat route-nya sendiri
+ * -> Nama dari view adalah nama dari blade file, dikurangi .blade.php
+ */
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/about', function () {
+    return view('about');
 });
