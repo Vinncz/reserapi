@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import url('https://fonts.googleapis.com/css?family=Manrope');
 @import url('https://fonts.googleapis.com/css?family=Space+Grotesk');
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import url('https://fonts.googleapis.com/css?family=JetBrains+Mono');
 
 @tailwind base;
 @tailwind components;
@@ -12,9 +12,18 @@
     margin: 0;
     box-sizing: border-box;
     position: relative;
-    /* font-family: "Lato"; */
+    font-family: "Manrope";
+    letter-spacing: 0.2px;
+    border-color: inherit;
+    color: inherit;
+    transition: 0.125s ease-in-out;
 }
 
-.bg {
-    background-color: salmon;
+.code {
+    font-family: "JetBrains Mono";
+    background: inherit;
+}
+
+footer {
+    transition: none;
 }
