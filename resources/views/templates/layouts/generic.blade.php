@@ -11,11 +11,11 @@
 
 {{-- PENTING: --}}
 {{-- Pas ganti x-axis padding pada page, edit page ini dan juga page navbar + footer --}}
-<body class="flex h-screen text-zinc-800 dark:text-zinc-300 border-zinc-300 dark:border-zinc-700 dark:bg-zinc-950 flex-col items-center w-full">
+<body class="flex h-screen text-zinc-800 dark:text-zinc-300 border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 flex-col items-center w-full">
 
     @include('templates.globals.navbar')
 
-    <wrapper class="flex flex-col h-full max-w-5xl w-full pt-16 px-5 pb-56">
+    <wrapper class="flex flex-col dark:text-zinc-400 h-full max-w-5xl w-full pt-16 page-padding pb-64 min-h-[720px]">
         @yield('children')
     </wrapper>
 

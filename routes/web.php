@@ -17,13 +17,16 @@ use Illuminate\Support\Facades\Route;
  * Note to self:
  * -> Untuk setiap page yang lu mau tampilin, buat route-nya sendiri
  * -> Nama dari view adalah nama dari blade file, dikurangi .blade.php
+ *
+ * -> di file web.php ini seharusnya gaada function yang balikin view apa.
+ *    yang ada, pindahin logikanya ke controller.
  */
 
-Route::get('/', function () {
+Route::get('/p', function () {
     return view('welcome');
 });
 
-Route::get('/p', function () {
+Route::get('/', function () {
     return view('brandnewpage');
 });
 

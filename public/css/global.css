@@ -7,6 +7,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --page-padding: 32px;
+}
+
+.page-padding {
+    padding-left:  var(--page-padding);
+    padding-right: var(--page-padding);
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -15,7 +24,6 @@
     font-family: "Manrope";
     letter-spacing: 0.2px;
     border-color: inherit;
-    color: inherit;
     transition: 0.125s ease-in-out;
 }
 
