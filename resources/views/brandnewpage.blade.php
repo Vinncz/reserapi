@@ -15,7 +15,7 @@
                 {{-- <th class=""> Start            </th>
                 <th class=""> End              </th> --}}
             </tr>
-
+            
             @foreach ($reservations as $reservation)
             <tr class="cursor-pointer" onclick="window.location.assign(`/reservations/{{ $reservation['id'] }}`)">
                 <a class="flex absolute top-0 left-0 h-full w-full" href=""></a>

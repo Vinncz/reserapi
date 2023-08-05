@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReservationController;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Route;
 
@@ -27,19 +28,8 @@ Route::get('/p', function () {
     return view('welcome');
 });
 
-Route::get('/', function () {
-    $a = new Reservation();
-    return view('brandnewpage', [
-        "reservations" => $a->all(),
-    ]);
-});
-
-Route::get('/reservations/{id}', function ($id) {
-    $a = new Reservation();
-    return view('individualreservation', [
-        "reservation" => $a->find($id)
-    ]);
-});
+Route::get('/', [ReservationController::class, 'index']);
+Route::get('/reservations/{id}', [ReservationController::class, 'show']);
 
 Route::get('/about', function () {
     /**
