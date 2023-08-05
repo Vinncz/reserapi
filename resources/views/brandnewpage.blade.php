@@ -2,9 +2,47 @@
 
 @section('children')
     {{-- this is how you import "components" in Laravel --}}
-    @include('templates.globals.page_title', ["title" => "All Upcoming Bookings"])
+    @include('templates.globals.page_title', ["title" => "Closest Reservations"])
 
-    There are no upcoming bookings in the database.
+    <div class="flex flex-col w-full overflow-x-auto border rounded-xl">
+        <table class="">
+            <tr class="">
+                <th class=""> ID                </th>
+                <th class=""> Room ID           </th>
+                <th class=""> Reserver Name     </th>
+                <th class=""> Subject           </th>
+                <th class=""> Remark            </th>
+                {{-- <th class=""> Start            </th>
+                <th class=""> End              </th> --}}
+            </tr>
+
+            @foreach ($reservations as $reservation)
+            <tr class="cursor-pointer" onclick="window.location.assign(`/reservations/{{ $reservation['id'] }}`)">
+                <a class="flex absolute top-0 left-0 h-full w-full" href=""></a>
+
+                <td class=""> {{ $reservation["id"] }}              </td>
+                <td class=""> {{ $reservation["room_id"] }}         </td>
+                <td class=""> {{ $reservation["reserver_name"] }}   </td>
+                <td class=""> {{ $reservation["subject"] }}         </td>
+                <td class=""> {{ $reservation["remark"] }}          </td>
+                {{-- <td class="">
+                    <?php
+                        $arr = explode(" ", $reservation["start"]);
+                        echo "<span class='font-bold'> $arr[0] </span>";
+                        echo "<span class=''> $arr[1] </span>";
+                    ?>
+                </td>
+                <td class="">
+                    <?php
+                        $arr = explode(" ", $reservation["end"]);
+                        echo "<span class='font-bold'> $arr[0] </span>";
+                        echo "<span class=''> $arr[1] </span>";
+                    ?>
+                </td> --}}
+            </tr>
+            @endforeach
+        </table>
+    </div>
 
     <br><br>
 

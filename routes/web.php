@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,17 @@ Route::get('/p', function () {
 });
 
 Route::get('/', function () {
-    return view('brandnewpage');
+    $a = new Reservation();
+    return view('brandnewpage', [
+        "reservations" => $a->all(),
+    ]);
+});
+
+Route::get('/reservations/{id}', function ($id) {
+    $a = new Reservation();
+    return view('individualreservation', [
+        "reservation" => $a->find($id)
+    ]);
 });
 
 Route::get('/about', function () {

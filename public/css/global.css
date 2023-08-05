@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Manrope');
 @import url('https://fonts.googleapis.com/css?family=Space+Grotesk');
 @import url('https://fonts.googleapis.com/css?family=JetBrains+Mono');
+@import url(./table.css);
 
 @tailwind base;
 @tailwind components;

@@ -15,7 +15,7 @@
 
     @include('templates.globals.navbar')
 
-    <wrapper class="flex flex-col dark:text-zinc-400 h-full max-w-5xl w-full pt-16 page-padding pb-64 min-h-[720px]">
+    <wrapper class="flex flex-col dark:text-zinc-400 max-w-5xl w-full pt-16 page-padding pb-64 h-fit">
         @yield('children')
     </wrapper>
 
