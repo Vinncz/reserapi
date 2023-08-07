@@ -3,49 +3,50 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Reservation
+class Reservation extends Model
 {
     use HasFactory;
-    protected $primary_key = "id";
 
-    private static $reservations = [
-        [
-            "id" => 1,
-            "room_id" => 1,
-            "reserver_name" => "Andi",
-            "subject" => "Undisclosed",
-            "remark" => "No remark was left",
-            // "start" => date("Y-m-d H:i:s"),
-            // "end" => date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s")." +2 hours")),
-            "pin" => "123456"
-        ],
-        [
-            "id" => 2,
-            "room_id" => 1,
-            "reserver_name" => "Budi",
-            "subject" => "Undisclosed",
-            "remark" => "No remark was left",
-            // "start" => date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s")." +4 hours")),
-            // "end" => date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s")." +6 hours")),
-            "pin" => "123456"
-        ],
+    /**
+     * Mengizinkan property yang ada didalamnya untuk dapat di-MassAssign.
+     *
+     * Contohnya tanpa $fillable:
+     *     # ini semua bakal error
+     *     Reservation::create([
+     *         'id' => 3,
+     *         'room_id' => 1,
+     *         'reserver_name' => 'Kevin',
+     *         'subject' => 'Undisclosed',
+     *     ])
+     */
+    protected $fillabble = [
+        'room_id',
+        'reserver_name',
+        'subject',
+        'remark',
+        'start',
+        'end',
+        'pin',
     ];
 
-    public static function all () {
-        return collect(self::$reservations);
-    }
-
-    public static function find ($id) {
-        $reservation = [];
-        return self::all()->firstWhere("id", (int) $id);
-
-        // foreach (self::all() as $data) {
-        //     if ($data["id"] == (int) $id) {
-        //         $reservation = $data;
-        //     }
-        // }
-
-        // return $reservation;
-    }
+    /**
+     * Memungkinkan property yang ada didalamnya untuk TIDAK dapat diisi.
+     *
+     * Contohnya tanpa $guarded:
+     *     # ini bisa aja
+     *     Reservation::create([
+     *         'id' => 3,
+     *     ])
+     *
+     * Contohnya dengan $guarded:
+     *     # ini bakal error
+     *     Reservation::create([
+     *         'id' => 3,
+     *     ])
+     */
+    protected $guarded = [
+        'id',
+    ];
 }

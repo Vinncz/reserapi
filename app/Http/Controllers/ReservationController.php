@@ -3,28 +3,68 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreReservationRequest;
+use App\Http\Requests\UpdateReservationRequest;
 
 class ReservationController extends Controller
 {
-    private static $a = null;
-
-    private static function singleton () {
-        if (self::$a == null) {
-            self::$a = new Reservation();
-        }
-    }
-    public function index () {
-        self::singleton();
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
         return view('brandnewpage', [
-            "reservations" => self::$a->all(),
+            "reservations" => Reservation::all(),
         ]);
     }
 
-    public function show ($id) {
-        self::singleton();
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreReservationRequest $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Reservation $reservation)
+    {
         return view('individualreservation', [
-            "reservation" => self::$a->find($id)
+            "reservation" => $reservation
         ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Reservation $reservation)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateReservationRequest $request, Reservation $reservation)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Reservation $reservation)
+    {
+        //
     }
 }

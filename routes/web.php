@@ -28,8 +28,18 @@ Route::get('/p', function () {
     return view('welcome');
 });
 
+/**
+ * Lu ternyata bisa milih property apa yang akan di-pass sama parameter.
+ * Pakai aja ':', diikuti dengan nama property.
+ *
+ * Pastikan nama yang ada didalam '{}' sama dengan yang diterima Controller.
+ * Contoh: '../id/{ANJING}' --> maka di Controller harus tertulis:
+ *    function ... (Dog $ANJING) {
+ *       ...
+ *    }
+ */
 Route::get('/', [ReservationController::class, 'index']);
-Route::get('/reservations/{id}', [ReservationController::class, 'show']);
+Route::get('/reservations/id/{reservation:id}', [ReservationController::class, 'show']);
 
 Route::get('/about', function () {
     /**

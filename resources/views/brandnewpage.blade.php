@@ -12,33 +12,33 @@
                 <th class=""> Reserver Name     </th>
                 <th class=""> Subject           </th>
                 <th class=""> Remark            </th>
-                {{-- <th class=""> Start            </th>
-                <th class=""> End              </th> --}}
+                <th class=""> Start            </th>
+                <th class=""> End              </th>
             </tr>
-            
-            @foreach ($reservations as $reservation)
-            <tr class="cursor-pointer" onclick="window.location.assign(`/reservations/{{ $reservation['id'] }}`)">
-                <a class="flex absolute top-0 left-0 h-full w-full" href=""></a>
 
-                <td class=""> {{ $reservation["id"] }}              </td>
-                <td class=""> {{ $reservation["room_id"] }}         </td>
-                <td class=""> {{ $reservation["reserver_name"] }}   </td>
-                <td class=""> {{ $reservation["subject"] }}         </td>
-                <td class=""> {{ $reservation["remark"] }}          </td>
-                {{-- <td class="">
+            @foreach ($reservations as $reservation)
+            <tr class="cursor-pointer" onclick="window.location.assign(`/reservations/id/{{ $reservation['id'] }}`)">
+                <td class="tiny-content"> {{ $reservation->id }}              </td>
+                <td class="small-content"> {{ $reservation->room_id }}         </td>
+                <td class="regular-content"> {{ $reservation->reserver_name }}   </td>
+                <td class="large-content"> {{ $reservation->subject }}         </td>
+                <td class="large-content"> {{ $reservation->remark }}          </td>
+                <td class="large-content">
                     <?php
-                        $arr = explode(" ", $reservation["start"]);
-                        echo "<span class='font-bold'> $arr[0] </span>";
+                        $arr = explode(" ", $reservation->start);
+                        $date = date("D, d-m-Y", strtotime($reservation->start));
+                        echo "<span class='font-bold'> $date </span>";
                         echo "<span class=''> $arr[1] </span>";
                     ?>
                 </td>
-                <td class="">
+                <td class="large-content">
                     <?php
-                        $arr = explode(" ", $reservation["end"]);
-                        echo "<span class='font-bold'> $arr[0] </span>";
+                        $arr = explode(" ", $reservation->end);
+                        $date = date("D, d-m-Y", strtotime($reservation->start));
+                        echo "<span class='font-bold'> $date </span>";
                         echo "<span class=''> $arr[1] </span>";
                     ?>
-                </td> --}}
+                </td>
             </tr>
             @endforeach
         </table>
