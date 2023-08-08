@@ -17,7 +17,13 @@ class ReservationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "room_id" => fake()->numberBetween(1, 5),
+            "reserver_name" => fake()->name(),
+            "subject" => fake()->words(),
+            "remark" => fake()->sentence(),
+            "start" => fake()->now(),
+            "end" => fake()->now(),
+            "pin" => str(fake()->randomNumber(6))
         ];
     }
 }
