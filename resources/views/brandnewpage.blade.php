@@ -1,4 +1,4 @@
-@extends('templates.layouts.generic')
+@extends('templates.page_layouts.generic')
 
 @section('children')
     {{-- this is how you import "components" in Laravel --}}

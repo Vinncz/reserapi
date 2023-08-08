@@ -47,6 +47,16 @@ class Reservation extends Model
      *     ])
      */
     protected $guarded = [
-        'id',
+        "id",
+        "created_at",
+        "updated_at",
     ];
+
+    /**
+     * Untuk relasi antar tabel, seperti Reservasi memiliki property `room_id`,
+     * agar
+     */
+    public function Room () {
+        return $this->belongsTo(Room::class);
+    }
 }

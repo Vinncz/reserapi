@@ -9,10 +9,18 @@ th {
     background: rgb(228, 228, 233);
 }
 
+tr:hover {
+    background-color: rgb(244 244 245);
+}
+
 @media (prefers-color-scheme: dark) {
     th {
         border: 0;
         background: rgb(39 39 42);
+    }
+
+    tr:hover {
+        background-color: rgb(24 24 27);
     }
 }
 
