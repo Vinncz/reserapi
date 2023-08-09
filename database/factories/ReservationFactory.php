@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\reservation>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Reservation>
  */
 class ReservationFactory extends Factory
 {
@@ -19,11 +19,11 @@ class ReservationFactory extends Factory
         return [
             "room_id" => fake()->numberBetween(1, 5),
             "reserver_name" => fake()->name(),
-            "subject" => fake()->words(),
+            "subject" => fake()->word(),
             "remark" => fake()->sentence(),
-            "start" => fake()->now(),
-            "end" => fake()->now(),
-            "pin" => str(fake()->randomNumber(6))
+            "start" => fake()->dateTime()->format("Y-m-d H:i:s"),
+            "end" => fake()->dateTime()->format("Y-m-d H:i:s"),
+            "pin" => strval(fake()->randomNumber(6))
         ];
     }
 }
