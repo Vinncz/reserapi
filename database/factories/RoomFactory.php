@@ -18,7 +18,7 @@ class RoomFactory extends Factory
     {
         $location = json_encode([
             'floor' => fake()->numberBetween(1, 19),
-            'landmark' => fake()->sentences()
+            'landmark' => fake()->sentence()
         ]);
 
         $facilities = json_encode([
