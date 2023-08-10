@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\RoomController;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Route;
 
@@ -38,8 +39,13 @@ Route::get('/p', function () {
  *       ...
  *    }
  */
-Route::get('/', [ReservationController::class, 'index']);
+Route::get('/', function () {
+    return view('pages.index');
+});
+Route::get('/reservations', [ReservationController::class, 'index']);
 Route::get('/reservations/id/{reservation:id}', [ReservationController::class, 'show']);
+
+Route::get('/rooms', [RoomController::class, 'index']);
 
 Route::get('/about', function () {
     /**

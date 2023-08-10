@@ -12,6 +12,12 @@
     --page-padding: 32px;
 }
 
+@media (prefers-color-scheme: dark) {
+    * {
+        color-scheme: dark;
+    }
+}
+
 .page-padding {
     padding-left:  var(--page-padding);
     padding-right: var(--page-padding);

@@ -13,8 +13,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return view('brandnewpage', [
-            "reservations" => Reservation::all(),
+        return view('pages/reservations/index', [
+            "reservations" => Reservation::with("Room")->get(),
         ]);
     }
 
@@ -39,7 +39,7 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        return view('individualreservation', [
+        return view('pages/reservations/id/individual_reservation', [
             "reservation" => $reservation
         ]);
     }
