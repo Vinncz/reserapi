@@ -1,5 +1,8 @@
 @extends('templates.page_layouts.generic')
 
 @section('children')
-    what the fuck from the /rooms page
+    @include('templates.globals.page_title', ["title" => "All Rooms"])
+    @foreach($rooms as $room)
+        <span> {{ $room->name }} </span>
+    @endforeach
 @endsection

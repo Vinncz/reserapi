@@ -31,6 +31,10 @@
             "display_name" => "Rooms",
             "path" => "/rooms"
         ],
+        [
+            "display_name" => "New",
+            "path" => "/reservations/new"
+        ]
     ];
 
     $element_classes = "hover:border-inherit border border-transparent rounded px-4 py-2 ";
@@ -41,18 +45,25 @@
         <a class="font-bold text-lg" href="/"> Reserapi™ </a>
         <div class="flex gap-2 font-bold ">
             @foreach ($links as $link)
-                @if ($path == $link["path"])
-                    <a class="{{ $element_classes }}" href='{{ $link["path"] }}'>
-                        {{ $link["display_name"] }}
-                    </a>
-                @else
-                    <a class="{{ $element_classes . "opacity-25 hover:opacity-100" }}" href='{{ $link["path"] }}'>
-                        {{ $link["display_name"] }}
-                    </a>
+                <?php $temp_element_classes = $element_classes ?>
+
+                @if ($path != $link["path"])
+                    <?php $temp_element_classes = $temp_element_classes . " opacity-25 hover:opacity-100" ?>
                 @endif
 
+                <a class="{{ $temp_element_classes }}" href='{{ $link["path"] }}'>
+                    {{ $link["display_name"] }}
+                </a>
             @endforeach
         </div>
-        <input class="ml-auto px-4 py-2 border rounded dark:bg-transparent dark:hover:bg-zinc-800" type="text" placeholder="Search anything.." />
+        <form class="ml-auto" action="/search">
+            <input
+                class="px-4 py-2 border rounded dark:bg-transparent dark:hover:bg-zinc-800"
+                name="query"
+                type="text"
+                placeholder="Search anything.."
+                value={{ request('query') }}
+            />
+        </form>
     </navbar_wrapper>
 </navbar>

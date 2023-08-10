@@ -14,7 +14,7 @@ class ReservationController extends Controller
     public function index()
     {
         return view('pages/reservations/index', [
-            "reservations" => Reservation::with("Room")->get(),
+            "reservations" => Reservation::with("Room")->paginate(2),
         ]);
     }
 
@@ -23,7 +23,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.reservations.new.index');
     }
 
     /**
@@ -39,7 +39,7 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        return view('pages/reservations/id/individual_reservation', [
+        return view('pages/reservations/id/index', [
             "reservation" => $reservation
         ]);
     }

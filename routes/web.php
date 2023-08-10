@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GlobalSearchController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomController;
 use App\Models\Reservation;
@@ -42,8 +43,12 @@ Route::get('/p', function () {
 Route::get('/', function () {
     return view('pages.index');
 });
+
+Route::get('/search', [GlobalSearchController::class, "index"]);
+
 Route::get('/reservations', [ReservationController::class, 'index']);
 Route::get('/reservations/id/{reservation:id}', [ReservationController::class, 'show']);
+Route::get('/reservations/new', [ReservationController::class, 'create']);
 
 Route::get('/rooms', [RoomController::class, 'index']);
 

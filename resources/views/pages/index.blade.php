@@ -1,5 +1,8 @@
 @extends('templates.page_layouts.generic')
 
 @section('children')
-    what the fuck
+    @include('templates.globals.page_title', ["title" => "Home"])
+
+    Reserapi is a bullshti
+
 @endsection
