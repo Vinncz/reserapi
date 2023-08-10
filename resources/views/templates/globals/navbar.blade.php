@@ -12,7 +12,7 @@
      * Output of $_SERVER['REQUEST_URI']:
      * "/about"
     */
-    $path = $_SERVER['REQUEST_URI'];
+    $path = explode("?", $_SERVER['REQUEST_URI'])[0];
 
     /**
      * (!) NOTE TO SELF:
@@ -39,11 +39,11 @@
 
     $element_classes = "hover:border-inherit border border-transparent rounded px-4 py-2 ";
 ?>
-
+{{-- @dd($path) --}}
 <navbar class="w-full border-b py-5 justify-center items-center flex">
     <navbar_wrapper class="select-none px-5 max-w-5xl w-full flex relative items-center gap-10 text-xs">
         <a class="font-bold text-lg" href="/"> Reserapi™ </a>
-        <div class="flex gap-2 font-bold ">
+        <div class="flex gap-2 font-bold max-sm:hidden">
             @foreach ($links as $link)
                 <?php $temp_element_classes = $element_classes ?>
 
@@ -56,13 +56,15 @@
                 </a>
             @endforeach
         </div>
-        <form class="ml-auto" action="/search">
+
+        <form class="max-md:hidden ml-auto gap-4 flex items-center" action="/search">
+            Search
             <input
                 class="px-4 py-2 border rounded dark:bg-transparent dark:hover:bg-zinc-800"
                 name="query"
                 type="text"
                 placeholder="Search anything.."
-                value={{ request('query') }}
+                value="<?= request('query') ?>"
             />
         </form>
     </navbar_wrapper>

@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Lato');
 @import url('https://fonts.googleapis.com/css?family=Manrope');
 @import url('https://fonts.googleapis.com/css?family=Space+Grotesk');
 @import url('https://fonts.googleapis.com/css?family=JetBrains+Mono');
@@ -10,6 +10,12 @@
 
 :root {
     --page-padding: 32px;
+}
+
+@media (prefers-color-scheme: dark) {
+    * {
+        color-scheme: dark;
+    }
 }
 
 .page-padding {
@@ -35,4 +41,4 @@
 
 footer {
     transition: none;
-} */
+}
