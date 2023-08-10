@@ -2,21 +2,21 @@
 
 @section('children')
     @include('templates.globals.page_title', ["title" => "All Rooms"])
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 sm:border rounded-xl sm:p-6 gap-4">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 sm:border rounded-xl sm:p-6 gap-4">
         @foreach($rooms as $room)
-            <card class="dark:bg-zinc-800 bg-slate-100 rounded flex flex-col gap-4">
-                <upper-card class="border-b">
-                    <img class="w-full h-full" src="http://picsum.photos/300/300" alt="template-photos">
+            <a href="/rooms/id/{{ $room->id }}" class="dark:bg-zinc-800 bg-slate-100 rounded flex flex-col overflow-hidden">
+                <upper-card class="border-b absolute aspect-square">
+                    <img class="w-[100%] h-[100%] object-cover" src="http://picsum.photos/400/300" alt="template-photos">
                 </upper-card>
-                <lower-card class="p-2 flex flex-col gap-2">
-                    <span class="text-xl font-bold">
+                <lower-card class="mt-[100%] px-3 p-2 sm:p-3 sm:px-4 md:p-4 flex flex-col gap-2">
+                    <span class="text-lg font-bold">
                         {{ $room->name }}
                     </span>
                     <span class="">
                         Floor {{ json_decode($room->location)->floor }}
                     </span>
                 </lower-card>
-            </card>
+            </a>
         @endforeach
     </div>
 

@@ -32,6 +32,7 @@
     letter-spacing: 0.2px;
     border-color: inherit;
     transition: 0.125s ease-in-out;
+    word-wrap: break-word;
 }
 
 .code {

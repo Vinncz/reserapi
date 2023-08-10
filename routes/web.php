@@ -51,6 +51,8 @@ Route::get('/reservations/id/{reservation:id}', [ReservationController::class, '
 Route::get('/reservations/new', [ReservationController::class, 'create']);
 
 Route::get('/rooms', [RoomController::class, 'index']);
+Route::get('/rooms/id/{room:id}', [RoomController::class, 'show']);
+Route::get('/rooms/new', [RoomController::class, 'create']);
 
 Route::get('/about', function () {
     /**
