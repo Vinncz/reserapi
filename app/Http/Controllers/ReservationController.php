@@ -14,7 +14,7 @@ class ReservationController extends Controller
     public function index()
     {
         return view('pages/reservations/index', [
-            "reservations" => Reservation::with("Room")->paginate(2),
+            "reservations" => Reservation::with("Room")->paginate(8),
         ]);
     }
 

@@ -31,7 +31,8 @@ class GlobalSearchController extends Controller
             $reservation_result = collect([Reservation::find( (int) substr($search_query, 6) )]);
 
         } else {
-            $reservation_result = collect(Reservation::where('reserver_name', 'LIKE', "%" . $search_query . "%")->get());
+            $reservation_result = collect(Reservation::with("Room")->where('reserver_name', 'LIKE', "%" . $search_query . "%")
+                                                            ->orWhere('id', 'LIKE', (int) $search_query)->get());
 
         }
 
