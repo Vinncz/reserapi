@@ -4,6 +4,8 @@
     {{-- this is how you import "components" in Laravel --}}
     @include('templates.globals.page_title', ["title" => "Closest Reservations"])
 
+    {{ $reservations->links() }}
+
     <div class="flex flex-col w-full overflow-x-auto border rounded-xl">
         <table class="">
             <tr class="">
@@ -46,7 +48,7 @@
         </table>
     </div>
 
-    {{ $reservations->links() }}
+    {{-- {{ $reservations->links() }} --}}
 
     <br><br>
 

@@ -71,7 +71,32 @@
         <span onclick="toggle_navbar_click(0)" class="font-bold text-3xl ml-auto sm:hidden z-40 px-4 py-3 hover:border-inherit border border-transparent rounded cursor-pointer "> = </span>
 
         <collapsible_navbar onclick="toggle_navbar_click(1)" id="collapsible_navbar" class="hidden bg-opacity-75 bg-black sm:hidden flex flex-col gap-4 fixed top-0 right-0 z-20 w-full h-full">
-            <div onclick="toggle_navbar_click(2)" class="w-80 absolute h-full top-0 right-0 bg-slate-100 dark:bg-zinc-800 z-30"></div>
+            <div onclick="toggle_navbar_click(2)" class="w-80 absolute h-full top-0 right-0 bg-slate-100 dark:bg-zinc-800 z-30">
+                <div class="flex flex-col w-full h-full mt-36 text-end">
+                    @foreach ($links as $link)
+                        <?php $temp_element_classes = $element_classes ?>
+
+                        @if ($path != $link["path"])
+                            <?php $temp_element_classes = $temp_element_classes . " opacity-25 hover:opacity-100" ?>
+                        @endif
+
+                        <a class="{{ $temp_element_classes }}" href='{{ $link["path"] }}'>
+                            {{ $link["display_name"] }}
+                        </a>
+                    @endforeach
+                </div>
+
+                <form class="max-md:hidden ml-auto gap-4 flex items-center" action="/search">
+                    Search
+                    <input
+                        class="px-4 py-2 border rounded dark:bg-transparent dark:hover:bg-zinc-800"
+                        name="query"
+                        type="text"
+                        placeholder="Search anything.."
+                        value="<?= request('query') ?>"
+                    />
+                </form>
+            </div>
         </collapsable_navbar>
 
         <script>
