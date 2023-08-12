@@ -68,9 +68,16 @@
                     value="<?= request('query') ?>"
                 />
             </form>
-            <a class="max-sm:hidden flex" href="/auth/login" alt="login">
-                <i class="text-2xl bi bi-person-circle"></i>
-            </a>
+            @guest
+                <a class="max-sm:hidden flex" href="/auth/login" alt="login">
+                    <i class="text-2xl bi bi-person-circle text-rose-400"></i>
+                </a>
+            @else
+                <a class="overflow-hidden max-sm:hidden flex border hover:outline-zinc-300 dark:hover:outline-zinc-700 hover:outline rounded-full aspect-square items-center justify-center w-[35px] h-[35px]" href="/dashboard" alt="dashboard">
+                    <?php $two_letters = Str::upper(substr(auth()->user()->name, 0, 1) . substr(auth()->user()->name, -1)) ?>
+                    <span class="text-xl p-2 font-bold text-center hover:bg-zinc-300 dark:hover:bg-zinc-800"> {{ $two_letters }} </span>
+                </a>
+            @endauth
         </div>
 
 

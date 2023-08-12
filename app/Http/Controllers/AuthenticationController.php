@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class AuthenticationController extends Controller
 {
@@ -16,15 +19,20 @@ class AuthenticationController extends Controller
     }
 
     public function authenticate (Request $request) {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:3'
+        $safe_data = $request->validate([
+            'email' => ['required', 'email:dns'],
+            'password' => ['required', Password::min(8)->mixedCase()->letters()]
         ]);
 
-        dd($request->all());
+        if (Auth::attempt($safe_data)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/');
+        }
+
+        return back()->with('credentials-mismatch-event', 'Wrong username or password!');
     }
 
-    public function create() {
+    public function create(Request $request) {
         return view('pages.auth.registration.index');
     }
 
@@ -33,7 +41,27 @@ class AuthenticationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $safe_data = $request->validate([
+            'name' => ['bail', 'required', 'min:5'],
+            'username' => ['bail', 'required', 'min:5'],
+            'email' => ['bail', 'required', 'email:dns', 'unique:users'],
+            'password' => ['bail', 'required', Password::min(8)->mixedCase()->letters()]
+        ]);
+
+        // dd($safe_data);
+        $safe_data['password'] = Hash::make($safe_data['password']);
+        User::create($safe_data);
+
+        return redirect('/auth/login')->with('successfully-registered-event', 'Successfully registered!');
+    }
+
+    public function logout(Request $request) {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/auth/login');
     }
 
     /**

@@ -45,16 +45,21 @@ Route::get('/', function () {
     return view('pages.index');
 });
 
-Route::get('/auth/login', [AuthenticationController::class, 'login']);
-Route::post('/auth/login', [AuthenticationController::class, 'authenticate']);
-Route::get('/auth/register', [AuthenticationController::class, 'create']);
-Route::post('/auth/register', [AuthenticationController::class, 'create']);
+Route::get('/dashboard', function () {
+    return view('pages.dashboard.index');
+})->middleware('auth');
+
+Route::get('/auth/login', [AuthenticationController::class, 'login'])->middleware('guest')->name('login');
+Route::post('/auth/login', [AuthenticationController::class, 'authenticate'])->middleware('guest');
+Route::get('/auth/register', [AuthenticationController::class, 'create'])->middleware('guest')->name('register');
+Route::post('/auth/register', [AuthenticationController::class, 'store'])->middleware('guest');
+Route::post('/auth/logout', [AuthenticationController::class, 'logout'])->middleware('auth');
 
 Route::get('/search', [GlobalSearchController::class, "index"]);
 
 Route::get('/reservations', [ReservationController::class, 'index']);
 Route::get('/reservations/id/{reservation:id}', [ReservationController::class, 'show']);
-Route::get('/reservations/new', [ReservationController::class, 'create']);
+Route::get('/reservations/new', [ReservationController::class, 'create'])->middleware('auth');
 
 Route::get('/rooms', [RoomController::class, 'index']);
 Route::get('/rooms/id/{room:id}', [RoomController::class, 'show']);
