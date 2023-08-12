@@ -57,16 +57,22 @@
             @endforeach
         </div>
 
-        <form class="max-md:hidden ml-auto gap-4 flex items-center" action="/search">
-            Search
-            <input
-                class="px-4 py-2 border rounded dark:bg-transparent dark:hover:bg-zinc-800"
-                name="query"
-                type="text"
-                placeholder="Search anything.."
-                value="<?= request('query') ?>"
-            />
-        </form>
+        <div class=" flex ml-auto gap-4 items-center ">
+            <form class="max-md:hidden gap-4 flex items-center " action="/search">
+                <span class="font-bold"> Search </span>
+                <input
+                    class="px-4 py-2 border rounded dark:bg-transparent dark:hover:bg-zinc-800"
+                    name="query"
+                    type="text"
+                    placeholder="Search anything.."
+                    value="<?= request('query') ?>"
+                />
+            </form>
+            <a class="max-sm:hidden flex" href="/auth/login" alt="login">
+                <i class="text-2xl bi bi-person-circle"></i>
+            </a>
+        </div>
+
 
         <span onclick="toggle_navbar_click(0)" class="font-bold text-3xl ml-auto sm:hidden z-40 px-4 py-3 hover:border-inherit border border-transparent rounded cursor-pointer "> = </span>
 

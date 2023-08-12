@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\GlobalSearchController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomController;
@@ -43,6 +44,11 @@ Route::get('/p', function () {
 Route::get('/', function () {
     return view('pages.index');
 });
+
+Route::get('/auth/login', [AuthenticationController::class, 'login']);
+Route::post('/auth/login', [AuthenticationController::class, 'authenticate']);
+Route::get('/auth/register', [AuthenticationController::class, 'create']);
+Route::post('/auth/register', [AuthenticationController::class, 'create']);
 
 Route::get('/search', [GlobalSearchController::class, "index"]);
 
