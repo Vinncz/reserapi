@@ -12,7 +12,7 @@
 
 {{-- PENTING: --}}
 {{-- Pas ganti x-axis padding pada page, edit page ini dan juga page navbar + footer --}}
-<body class="flex h-screen text-zinc-800 dark:text-zinc-300 border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 flex-col items-center w-full">
+<body class="flex h-screen text-zinc-800 dark:text-zinc-300 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-950 flex-col items-center w-full">
 
     @include('templates.globals.navbar')
 

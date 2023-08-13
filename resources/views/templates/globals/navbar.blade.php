@@ -37,7 +37,7 @@
         ]
     ];
 
-    $element_classes = "hover:border-inherit border border-transparent rounded px-4 py-2 ";
+    $element_classes = "hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded px-4 py-2 ";
 ?>
 {{-- @dd($path) --}}
 <navbar class="w-full border-b py-5 justify-center items-center flex">

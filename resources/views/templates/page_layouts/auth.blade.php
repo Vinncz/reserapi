@@ -19,47 +19,43 @@
                 dark:sm:bg-zinc-900 dark:sm:bg-opacity-60 dark:sm:backdrop-blur-xl">
     @csrf
 
+    {{-- the gradient background at login/register screen --}}
     <div class="opacity-80 absolute w-full h-full">
         <span class="max-sm:hidden w-[125px] aspect-square absolute bg-cyan-300 bg-opacity-20 rounded-full top-[-5%] left-[-5%] blur-3xl"></span>
         <span class="max-sm:hidden w-[300px] aspect-square absolute bg-violet-500 bg-opacity-10 rounded-full top-[12%] left-[65%] blur-3xl"></span>
         <span class="max-sm:hidden w-[200px] aspect-square absolute bg-indigo-300 bg-opacity-10 rounded-full bottom-0 left-15 blur-3xl"></span>
     </div>
 
-    @if (!session()->has('successfully-registered-event') && $alternate_message_enabled)
-        <div class="flex flex-col mb-4 mt-6">
-            <i class="text-5xl bi bi-person-bounding-box opacity-90"></i>
-            @include('templates.globals.page_title', ['title' => $title])
+    <div class="flex flex-col mb-4 mt-6">
+        <i class="text-5xl bi bi-person-bounding-box opacity-90"></i>
 
+        @include('templates.globals.page_title', ['title' => $title])
+
+        @if (!session()->has('successfully-registered-event') && $alternate_message_enabled)
             <div class="mt-[-1rem] select-none opacity-50 flex items-center gap-x-2 gap-y">
                 {{ $alternate_message }} <a class="text-blue-600 hover:underline" href="{{ $alternate_action_link }}"> {{ $alternate_action_message }} </a>
             </div>
-        </div>
-    @else
-        <div class="flex flex-col mb-4 mt-6">
-            <i class="text-5xl bi bi-person-bounding-box opacity-90"></i>
-            @include('templates.globals.page_title', ['title' => $title])
-
+        @else
             <div class="border-b mb-4"></div>
-        </div>
+        @endif
 
-    @endif
+    </div>
 
     @if(session()->has('successfully-registered-event'))
-        <div class="border-2 p-4 rounded-md flex items-center gap-4
-                    bg-emerald-200 border-emerald-600 text-emerald-800
-                    dark:bg-emerald-800 dark:border-emerald-600 dark:text-emerald-100">
-            <i class="text-2xl bi bi-check-circle-fill"></i> {{ session('successfully-registered-event') }}
-        </div>
+        @include('templates.component_layouts.alerts.success', [
+            "title" => "Successfully registered!",
+            "message" => session('successfully-registered-event'),
+        ])
     @endif
 
     @if(session()->has('credentials-mismatch-event'))
-        <div class="border-2 p-4 rounded-md flex items-center gap-4
-                    bg-rose-200 border-rose-600 text-rose-800
-                    dark:bg-rose-800 dark:border-rose-500 dark:text-rose-200">
-            <i class="text-2xl bi bi-exclamation-circle-fill"></i> {{ session('credentials-mismatch-event') }}
-        </div>
+        @include('templates.component_layouts.alerts.error', [
+            "title" => "Credentials mismatch!",
+            "message" => session('credentials-mismatch-event'),
+        ])
     @endif
 
+    {{-- passed fields parameter --}}
     @foreach ($fields as $field)
         <div class="flex flex-col gap-3">
             <span class=" select-none">
@@ -83,7 +79,7 @@
                 placeholder="<?php print $field['custom_message'] == true ? $field['message'] : 'Your '.strtolower($field['field_name']).' here' ?>">
 
             @error(strtolower($field['field_name']))
-                <span class="flex mt-[-4px] text-red-700">
+                <span class="flex mt-[-4px] text-red-700 font-bold">
                     {{ $message }}
                 </span>
             @enderror
@@ -99,12 +95,13 @@
         {{ $submit_button_text }}
     </button>
 
-    @if ($forgot_password_enabled == true)
+    @if (isset($forgot_password_enabled) && $forgot_password_enabled)
         <a href="/auth/forgot-password" class="opacity-75 select-none flex justify-center hover:underline">
             Forgot Password
         </a>
     @endif
 
+    {{-- QoL -> autofocus on the first field in sight --}}
     <script>
         const first_input_field = document.getElementById("<?= strtolower($fields[0]['field_name']) ?>")
         first_input_field.focus()

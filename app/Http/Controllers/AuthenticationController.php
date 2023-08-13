@@ -29,7 +29,7 @@ class AuthenticationController extends Controller
             return redirect()->intended('/');
         }
 
-        return back()->with('credentials-mismatch-event', 'Wrong username or password!');
+        return back()->with('credentials-mismatch-event', 'Inserted email or password is incorrect!');
     }
 
     public function create(Request $request) {
@@ -52,7 +52,7 @@ class AuthenticationController extends Controller
         $safe_data['password'] = Hash::make($safe_data['password']);
         User::create($safe_data);
 
-        return redirect('/auth/login')->with('successfully-registered-event', 'Successfully registered!');
+        return redirect('/auth/login')->with('successfully-registered-event', 'Now please log into your account.');
     }
 
     public function logout(Request $request) {
