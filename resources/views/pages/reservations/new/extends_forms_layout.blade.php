@@ -24,17 +24,24 @@
                     "field_type" => FieldTypes::DATETIME,
                     "init_value" => now(),
                 ],
+                // [
+                //     "display_name" => "End",
+                //     "required" => true,
+                //     "field_type" => FieldTypes::DATETIME,
+                //     // "init_value" => now(),
+                // ],
                 [
-                    "display_name" => "End",
+                    "display_name" => "Duration",
                     "required" => true,
-                    "field_type" => FieldTypes::DATETIME,
-                    // "init_value" => now(),
+                    "field_type" => FieldTypes::NUMBER,
+                    "step" => 15,
+                    "init_value" => 30,
                 ],
             ]
         ],
         [
             "display_name" => "Remark",
-            "required" => true,
+            "required" => false,
             "field_type" => FieldTypes::TEXT,
             "placeholder" => "Don't forget to prepare the subject beforehand...",
         ],

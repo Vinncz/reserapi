@@ -6,13 +6,13 @@
     $label_classes = "opacity-1030 select-none";
     $input_classes = "border-b p-3 px-3 rounded-none placeholder:text-zinc-200
                         -outline-offset-2 focus:outline-2 focus:outline outline-blue-500
-                        hover:bg-zinc-100
+                        hover:bg-zinc-100 h-full
                         dark:hover:bg-zinc-900 dark:bg-zinc-900 dark:placeholder:text-zinc-700";
 ?>
 
 <form action=""
       method=""
-      class="mt-4 flex flex-col gap-6 sm:w-[60%]
+      class="mt-8 flex flex-col gap-6 sm:w-[60%]
              {{ $light }} {{ $dark }}"
              style="font-family: 'IBM Plex Sans'"
 >
@@ -36,6 +36,7 @@
                             "init_value"   => isset($nested['init_value']) ? $nested['init_value'] : null,
                             "placeholder"   => isset($nested['placeholder']) ? $nested['placeholder'] : null,
                             "required"   => isset($nested['required']) ? $nested['required'] : null,
+                            "step"   => isset($nested['step']) ? $nested['step'] : null,
                         ])
                     </div>
                 @endforeach
@@ -51,6 +52,7 @@
                         "init_value"   => isset($field['init_value']) ? $field['init_value'] : null,
                         "placeholder"  => isset($field['placeholder']) ? $field['placeholder'] : null,
                         "required"  => isset($field['required']) ? $field['required'] : null,
+                        "step"  => isset($field['step']) ? $field['step'] : null,
                     ])
                 </div>
 

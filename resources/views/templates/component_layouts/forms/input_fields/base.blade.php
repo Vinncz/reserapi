@@ -14,10 +14,8 @@
 
 <label
     for="{{ strtolower($display_name) }}"
-    class="{{ $label_classes }}"
-    @if(isset($required) && $required)
-        required 
-    @endif
+    class="{{ $label_classes }} @if(isset($required) && $required) after:content-['required*'] after:italic after:opacity-50 after:text-xs @endif"
+
 >
     {{ $display_name }}
 </label>

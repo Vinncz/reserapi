@@ -10,4 +10,7 @@
     @if(isset( $required ))
         required
     @endif
+    @if(isset( $step ))
+        step="{{ $step }}"
+    @endif
 >
