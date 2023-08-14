@@ -4,7 +4,7 @@
 
     $field_classes = "flex flex-col flex-grow gap-2";
     $label_classes = "opacity-1030 select-none";
-    $input_classes = "border-b p-3 px-3 rounded-none placeholder:text-zinc-100
+    $input_classes = "border-b p-3 px-3 rounded-none placeholder:text-zinc-200
                         -outline-offset-2 focus:outline-2 focus:outline outline-blue-500
                         hover:bg-zinc-100
                         dark:hover:bg-zinc-900 dark:bg-zinc-900 dark:placeholder:text-zinc-700";
@@ -35,6 +35,7 @@
                             "field_type"   => $nested['field_type'],
                             "init_value"   => isset($nested['init_value']) ? $nested['init_value'] : null,
                             "placeholder"   => isset($nested['placeholder']) ? $nested['placeholder'] : null,
+                            "required"   => isset($nested['required']) ? $nested['required'] : null,
                         ])
                     </div>
                 @endforeach
@@ -49,6 +50,7 @@
                         "options"      => isset($field['options']) ? $field['options'] : null,
                         "init_value"   => isset($field['init_value']) ? $field['init_value'] : null,
                         "placeholder"  => isset($field['placeholder']) ? $field['placeholder'] : null,
+                        "required"  => isset($field['required']) ? $field['required'] : null,
                     ])
                 </div>
 

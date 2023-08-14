@@ -12,7 +12,15 @@
     }
 ?>
 
-<label for="{{ strtolower($display_name) }}" class="{{ $label_classes }}"> {{ $display_name }} </label>
+<label
+    for="{{ strtolower($display_name) }}"
+    class="{{ $label_classes }}"
+    @if(isset($required) && $required)
+        required 
+    @endif
+>
+    {{ $display_name }}
+</label>
 
 @if ( $field_type == FieldTypes::RADIO )
 

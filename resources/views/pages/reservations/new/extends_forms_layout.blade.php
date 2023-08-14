@@ -5,11 +5,13 @@
         [
             "display_name" => "Subject",
             "field_type" => FieldTypes::STRING,
+            "required" => true,
             "options" => $rooms,
             "placeholder" => "Brainstorming Summer Event Ideas",
         ],
         [
             "display_name" => "Room",
+            "required" => true,
             "field_type" => FieldTypes::RADIO,
             "options" => $rooms,
         ],
@@ -18,11 +20,13 @@
             "nested" => [
                 [
                     "display_name" => "Start",
+                    "required" => true,
                     "field_type" => FieldTypes::DATETIME,
                     "init_value" => now(),
                 ],
                 [
                     "display_name" => "End",
+                    "required" => true,
                     "field_type" => FieldTypes::DATETIME,
                     // "init_value" => now(),
                 ],
@@ -30,11 +34,13 @@
         ],
         [
             "display_name" => "Remark",
+            "required" => true,
             "field_type" => FieldTypes::TEXT,
             "placeholder" => "Don't forget to prepare the subject beforehand...",
         ],
         [
             "display_name" => "PIN",
+            "required" => true,
             "field_type" => FieldTypes::NUMBER,
             "init_value" => 123456
         ],

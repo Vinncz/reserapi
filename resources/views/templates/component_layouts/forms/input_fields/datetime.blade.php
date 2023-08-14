@@ -5,4 +5,7 @@
     @if(isset( $init_value ))
         value="{{ date('Y-m-d H:i', strtotime($init_value)) }}"
     @endif
+    @if(isset( $required ))
+        required
+    @endif
 >

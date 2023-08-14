@@ -12,6 +12,9 @@
     @if ( isset($init_value) )
         value="{{ $init_value }}"
     @endif
+    @if(isset( $required ))
+        required
+    @endif
 >
 
     @foreach ($options as $option)
