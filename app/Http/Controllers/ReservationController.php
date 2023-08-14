@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
+use App\Models\Room;
 
 class ReservationController extends Controller
 {
@@ -23,7 +24,10 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view('pages.reservations.new.index');
+        // to provide room_ids
+        $rooms = Room::all();
+        
+        return view('pages.reservations.new.index', ["rooms" => $rooms]);
     }
 
     /**

@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Manrope');
 @import url('https://fonts.googleapis.com/css?family=Space+Grotesk');
 @import url('https://fonts.googleapis.com/css?family=JetBrains+Mono');
+@import url('https://gatsby.carbondesignsystem.com/fonts/IBMPlexSansLatin-VF.woff2');
 @import url(./table.css);
 
 @tailwind base;
@@ -18,9 +19,20 @@
     }
 }
 
+@font-face {
+    font-display: swap;
+    font-family: IBM Plex Sans;
+    /* font-weight: 600; */
+    src: url('https://gatsby.carbondesignsystem.com/fonts/IBMPlexSansLatin-VF.woff2')
+}
+
 .page-padding {
     padding-left:  var(--page-padding);
     padding-right: var(--page-padding);
+}
+
+html {
+    font-family: "Manrope";
 }
 
 * {
@@ -28,7 +40,7 @@
     margin: 0;
     box-sizing: border-box;
     position: relative;
-    font-family: "Manrope";
+
     letter-spacing: 0.2px;
     border-color: inherit;
     transition: 0.125s ease-in-out;

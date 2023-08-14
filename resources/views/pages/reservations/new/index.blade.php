@@ -1,7 +1,9 @@
 @extends('templates.page_layouts.generic')
 
 @section('children')
-    {{-- this is how you import "components" in Laravel --}}
+    {{-- <i class="text-5xl bi bi-calendar-plus opacity-90"></i> --}}
     @include('templates.globals.page_title', ["title" => "New Reservation"])
+
+    @include('pages.reservations.new.extends_forms_layout')
 
 @endsection

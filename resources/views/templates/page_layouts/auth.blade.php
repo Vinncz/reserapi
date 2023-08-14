@@ -86,14 +86,10 @@
         </div>
     @endforeach
 
-    <button type="submit"
-            class="select-none mt-6 font-bold rounded-md py-3 bg-green-600 text-white
-                hover:bg-green-700
-                dark:bg-green-700
-                dark:hover:bg-green-800"
-            >
-        {{ $submit_button_text }}
-    </button>
+    {{-- submit --}}
+    @include('templates.component_layouts.buttons.green', [
+        "message" => $submit_button_text
+    ])
 
     @if (isset($forgot_password_enabled) && $forgot_password_enabled)
         <a href="/auth/forgot-password" class="opacity-75 select-none flex justify-center hover:underline">
