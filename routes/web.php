@@ -62,6 +62,8 @@ Route::get('/reservations/id/{reservation:id}', [ReservationController::class, '
 Route::get('/reservations/new', [ReservationController::class, 'create'])->middleware('auth');
 Route::post('/reservations/new', [ReservationController::class, 'store'])->middleware('auth');
 
+Route::get('/reservations/my', [ReservationController::class, 'my'])->middleware('auth');
+
 Route::get('/rooms', [RoomController::class, 'index']);
 Route::get('/rooms/id/{room:id}', [RoomController::class, 'show']);
 Route::get('/rooms/new', [RoomController::class, 'create']);

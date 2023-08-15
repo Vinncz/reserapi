@@ -17,6 +17,10 @@
                 name="{{ strtolower($display_name) }}"
                 id="{{ strtolower($opt->name) }}"
                 value="{{ strtolower($opt->id) }}"
+                {{-- value="{{ old(strtolower($display_name)) }}" --}}
+
+                {{ old(strtolower($display_name)) == strtolower($opt->id) ? "checked" : "" }}
+
                 class="{{ $input_classes }} @error(strtolower($display_name)) {{ $error_classes }} @enderror"
                 type="radio"
                 @if(isset( $init_value ) && $init_value == $opt->id)

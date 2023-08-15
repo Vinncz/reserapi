@@ -6,7 +6,7 @@
     <input
         name="{{ strtolower($display_name) }}"
         id="{{ strtolower($display_name) }}"
-        class="flex flex-grow mr-2 {{ $input_classes }} @error(strtolower($display_name)) {{ $error_classes }} @enderror"
+        class="flex flex-grow @if (isset($buttons) && $buttons) mr-2 @endif {{ $input_classes }} @error(strtolower($display_name)) {{ $error_classes }} @enderror"
         type="number"
         placeholder="{{ $placeholder }}"
         value="{{ null !== old(strtolower($display_name)) ? old(strtolower($display_name)) : (isset( $init_value ) ? $init_value : null) }}"

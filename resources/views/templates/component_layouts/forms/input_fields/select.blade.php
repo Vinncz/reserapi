@@ -20,6 +20,7 @@
             @if( $init_value == $option->id )
                 selected
             @endif
+            {{ old(strtolower($display_name)) == strtolower($option->id) ? "selected" : "" }}
         > {{ $option->name }} </option>
     @endforeach
 

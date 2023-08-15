@@ -17,6 +17,14 @@
 
         @csrf
 
+        @if(session()->has('fatal-error'))
+            @include('templates.component_layouts.alerts.error', [
+                // "title" => "Successfully registered!",
+                "message" => session('fatal-error'),
+                "custom_classes" => "mb-4"
+            ])
+        @endif
+
         @foreach ($fields as $field)
             <?php
                 $nested_is_present = isset($field["nested"]);

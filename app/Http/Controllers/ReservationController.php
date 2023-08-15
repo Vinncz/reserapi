@@ -40,7 +40,7 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $safe_data = $request->validate([
+        $validated_data = $request->validate([
             'subject' => ['bail', 'required', 'min:8', 'max:1022'],
             'room' => ['bail', 'required', 'exists:rooms,id'], // is actually room_id
             'start' => ['bail', 'required', 'date', 'date_format:Y-m-d\TH:i'],
@@ -49,10 +49,35 @@ class ReservationController extends Controller
             'pin' => 'numeric|min:000000|max:999999|digits:6',
         ]);
 
-        // dd($safe_data, auth()->user()->name);
+        /**
+         * Pastikan kalo request kita tidak tidak bentrok dengan jadwal ruangan yang diminta.
+         *
+         * Ini dilakukan dengan ngecek:
+         * 1.) apakah ruangan tersebut sedang dipakai saat waktu bookingan kita dimulai?
+         * 2.) apakah bookingan yang kita minta akan overlap dengan booking yang akan datang?
+         */
 
-        $start_time = date("Y-m-d H:i", strtotime($safe_data["start"]));
-        $end_time   = date("Y-m-d H:i", strtotime("+".$safe_data["duration"]." minutes", strtotime($start_time)));
+        $start_time = date("Y-m-d H:i", strtotime($validated_data["start"]));
+        $end_time   = date("Y-m-d H:i", strtotime("+".$validated_data["duration"]." minutes", strtotime($start_time)));
+
+        $overlappingExistingBookings = Reservation::where('room_id', $validated_data["room"])
+            ->where('start', '<', $end_time)
+            ->where('end', '>', $start_time)
+            ->get();
+        // dd($overlappingExistingBookings);
+        $overlappingLaterBookings = Reservation::where('room_id', $validated_data["room"])
+            ->where('start', '>', $start_time)
+            ->where('start', '<', $end_time)
+            ->get();
+        //
+        if ($overlappingExistingBookings != null || $overlappingLaterBookings != null) {
+            if ( $overlappingExistingBookings != null && sizeof($overlappingExistingBookings) > 0 )
+                return redirect()->back()->with('fatal-error', "Booking overlaps with existing bookings for room ".Room::find($validated_data["room"])->name.". " . $overlappingExistingBookings)->withInput();
+            else if ($overlappingLaterBookings != null && sizeof($overlappingLaterBookings) > 0 )
+                return redirect()->back()->with('fatal-error', "Booking overlaps with a later scheduled bookings for room ".Room::find($validated_data["room"])->name.". " . $overlappingLaterBookings)->withInput();
+        }
+
+        $safe_data = $validated_data;
 
         $res = new Reservation;
         $res->room_id = $safe_data["room"];
@@ -68,7 +93,7 @@ class ReservationController extends Controller
         if ($success)
             return redirect('/reservations/my')->with('reservation-made-event', "Successfully reserved ".Room::find($safe_data['room'])->name." for ".$safe_data["duration"]." minutes.");
         else
-            return back()->withErrors('failed-to-make-reservation-event', "Something went wrong.");
+            return redirect()->back()->with('fatal-error', "Something went wrong.");
     }
 
     /**
@@ -78,6 +103,25 @@ class ReservationController extends Controller
     {
         return view('pages/reservations/id/index', [
             "reservation" => $reservation
+        ]);
+    }
+
+    public function my (Request $request) {
+        $var1 = "";
+        $var2 = "";
+
+        $assoc_reservation = Reservation::with(["Room", "User", "Priority"])
+                                            ->where("user_id", auth()->user()->id)
+                                            ->where("start", ">", now())
+                                            ->orWhere(function($q) use ($var1, $var2) {
+                                                $q->where("end", ">=", now())
+                                                  ->where("start", "<=", now());
+                                            })
+                                            ->orderBy("start", "desc")
+                                            ->paginate(10);
+
+        return view('pages/reservations/my/index', [
+            "reservations" => $assoc_reservation,
         ]);
     }
 
