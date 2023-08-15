@@ -3,6 +3,8 @@
         case STRING = "text";
         case TEXT = "textarea";
         case NUMBER = "number";
+        case PASSWORD = "password";
+        case EMAIL = "email";
 
         case DATETIME = "datetime-local";
         case DATE = "date";

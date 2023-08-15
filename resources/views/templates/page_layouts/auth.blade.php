@@ -58,12 +58,12 @@
     {{-- passed fields parameter --}}
     @foreach ($fields as $field)
         <div class="flex flex-col gap-3">
-            <span class=" select-none">
+            {{-- <span class=" select-none">
                 {{ $field['field_name'] }}
             </span>
 
             <input
-                {{-- required or not --}}                                                                                   <?php print $field['required'] == true ? "required" : null ?>
+                                                                                                   <?php print $field['required'] == true ? "required" : null ?>
                 type="{{ $field['field_type'] }}"
                 name="{{ strtolower($field['field_name']) }}"
                 id="{{ strtolower($field['field_name']) }}"
@@ -82,6 +82,21 @@
                 <span class="flex mt-[-4px] text-red-700 font-bold">
                     {{ $message }}
                 </span>
+            @enderror --}}
+
+            @include('templates.component_layouts.forms.input_fields.base', [
+                "display_name" => $field['display_name'],
+                "field_type"   => $field['field_type'],
+                "init_value"   => isset($field['init_value']) ? $field['init_value'] : null,
+                "placeholder"   => isset($field['placeholder']) ? $field['placeholder'] : null,
+                "required"   => isset($field['required']) ? $field['required'] : null,
+                "step"   => isset($field['step']) ? $field['step'] : null,
+            ])
+
+            @error(strtolower($field['display_name']))
+                <span class="flex mt-[-4px] text-red-700">
+                    {{ $message }}
+                </span>
             @enderror
         </div>
     @endforeach
@@ -98,8 +113,8 @@
     @endif
 
     {{-- QoL -> autofocus on the first field in sight --}}
-    <script>
+    {{-- <script>
         const first_input_field = document.getElementById("<?= strtolower($fields[0]['field_name']) ?>")
         first_input_field.focus()
-    </script>
+    </script> --}}
 </form>

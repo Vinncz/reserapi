@@ -60,6 +60,7 @@ Route::get('/search', [GlobalSearchController::class, "index"]);
 Route::get('/reservations', [ReservationController::class, 'index']);
 Route::get('/reservations/id/{reservation:id}', [ReservationController::class, 'show']);
 Route::get('/reservations/new', [ReservationController::class, 'create'])->middleware('auth');
+Route::post('/reservations/new', [ReservationController::class, 'store'])->middleware('auth');
 
 Route::get('/rooms', [RoomController::class, 'index']);
 Route::get('/rooms/id/{room:id}', [RoomController::class, 'show']);

@@ -54,4 +54,6 @@
     ];
 ?>
 
-@extends('templates.component_layouts.forms.base')
+@extends('templates.component_layouts.forms.base', [
+    "postback_address" => "/reservations/new",
+])

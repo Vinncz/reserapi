@@ -6,6 +6,7 @@ use App\Models\Reservation;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Room;
+use Symfony\Component\HttpFoundation\Request;
 
 class ReservationController extends Controller
 {
@@ -26,16 +27,16 @@ class ReservationController extends Controller
     {
         // to provide room_ids
         $rooms = Room::all();
-        
+
         return view('pages.reservations.new.index', ["rooms" => $rooms]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreReservationRequest $request)
+    public function store(Request $request)
     {
-        //
+        dd(request(), auth()->user()->name);
     }
 
     /**

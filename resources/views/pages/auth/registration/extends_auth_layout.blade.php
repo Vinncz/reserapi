@@ -1,33 +1,59 @@
+@include('templates.component_layouts.forms.field_types')
+
 <?php
     $fields = [
         [
-            "field_name" => "Name",
-            "field_type" => "text", # either text, password, number, etc.
+            "display_name" => "Name",
+            "field_type" => FieldTypes::STRING, # either text, password, number, etc.
             "required" => true,
-            "custom_message" => false,
-            "message" => null,
+            "placeholder" => "Abby Jane",
         ],
         [
-            "field_name" => "Username",
-            "field_type" => "text", # either text, password, number, etc.
+            "display_name" => "Username",
+            "field_type" => FieldTypes::STRING, # either text, password, number, etc.
             "required" => true,
-            "custom_message" => false,
-            "message" => null,
+            "placeholder" => "AbbyJ",
         ],
         [
-            "field_name" => "Email",
-            "field_type" => "email",
+            "display_name" => "Email",
+            "field_type" => FieldTypes::EMAIL,
             "required" => true,
-            "custom_message" => false,
-            "message" => null,
+            "placeholder" => "abby.jane@gmail.com",
         ],
         [
-            "field_name" => "Password",
-            "field_type" => "password",
+            "display_name" => "Password",
+            "field_type" => FieldTypes::PASSWORD,
             "required" => true,
-            "custom_message" => false,
-            "message" => null,
+            "placeholder" => "Must contain at least one capital letter",
         ],
+        // [
+        //     "field_name" => "Name",
+        //     "field_type" => "text", # either text, password, number, etc.
+        //     "required" => true,
+        //     "custom_message" => false,
+        //     "message" => null,
+        // ],
+        // [
+        //     "field_name" => "Username",
+        //     "field_type" => "text", # either text, password, number, etc.
+        //     "required" => true,
+        //     "custom_message" => false,
+        //     "message" => null,
+        // ],
+        // [
+        //     "field_name" => "Email",
+        //     "field_type" => "email",
+        //     "required" => true,
+        //     "custom_message" => false,
+        //     "message" => null,
+        // ],
+        // [
+        //     "field_name" => "Password",
+        //     "field_type" => "password",
+        //     "required" => true,
+        //     "custom_message" => false,
+        //     "message" => null,
+        // ],
     ];
 ?>
 
