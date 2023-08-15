@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::table('reservations', function (Blueprint $table) {
             $table->foreign(['room_id'], 'associated_room')->references(['id'])->on('rooms');
+            $table->foreign(['user_id'], 'reserver')->references(['id'])->on('users');
+            $table->foreign(['priority_id'], 'urgency')->references(['id'])->on('priorities');
         });
     }
 
@@ -27,6 +29,8 @@ return new class extends Migration
     {
         Schema::table('reservations', function (Blueprint $table) {
             $table->dropForeign('associated_room');
+            $table->dropForeign('reserver');
+            $table->dropForeign('urgency');
         });
     }
 };

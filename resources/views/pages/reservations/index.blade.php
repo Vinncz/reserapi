@@ -13,6 +13,7 @@
                 <th class=""> Room Name           </th>
                 <th class=""> Reserver Name     </th>
                 <th class=""> Subject           </th>
+                <th class=""> Priority           </th>
                 <th class=""> Start            </th>
                 <th class=""> End              </th>
                 <th class=""> Remark            </th>
@@ -22,8 +23,9 @@
                 <tr class="cursor-pointer" onclick="window.location.assign(`/reservations/id/{{ $reservation['id'] }}`)">
                     {{-- <td class="tiny-content"> {{ $reservation->id }}               </td> --}}
                     <td class="small-content"> {{ $reservation->Room->name }}         </td>
-                    <td class="regular-content"> {{ $reservation->reserver_name }} </td>
+                    <td class="regular-content"> {{ $reservation->User->name }} </td>
                     <td class="small-content"> {{ $reservation->subject }}         </td>
+                    <td class="small-content"> {{ $reservation->Priority->name }}         </td>
                     <td class="large-content">
                         <?php
                             $arr = explode(" ", $reservation->start);

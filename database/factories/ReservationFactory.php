@@ -17,9 +17,10 @@ class ReservationFactory extends Factory
     public function definition(): array
     {
         return [
-            "room_id" => fake()->numberBetween(1, 5),
-            "reserver_name" => fake()->name(),
+            "room_id" => fake()->numberBetween(1, 10),
+            "user_id" => fake()->numberBetween(1, 10),
             "subject" => fake()->word(),
+            "priority_id" => fake()->numberBetween(1, 5),
             "remark" => fake()->sentence(),
             "start" => fake()->dateTime()->format("Y-m-d H:i:s"),
             "end" => fake()->dateTime()->format("Y-m-d H:i:s"),

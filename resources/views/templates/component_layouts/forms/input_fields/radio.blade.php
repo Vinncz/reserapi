@@ -22,7 +22,7 @@
                 @if(isset( $init_value ) && $init_value == $opt->id)
                     checked
                 @endif
-                @if(isset( $required ))
+                @if(isset( $required ) && $required)
                     required
                 @endif
             >

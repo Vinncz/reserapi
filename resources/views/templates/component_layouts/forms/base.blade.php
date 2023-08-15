@@ -39,6 +39,7 @@
                                 "step"   => isset($nested['step']) ? $nested['step'] : null,
                                 "min"   => isset($nested['min']) ? $nested['min'] : null,
                                 "max"   => isset($nested['max']) ? $nested['max'] : null,
+                                "buttons"   => isset($nested['buttons']) ? $nested['buttons'] : null,
                             ])
 
                             @error(strtolower($nested['display_name']))
@@ -63,6 +64,7 @@
                             "step"  => isset($field['step']) ? $field['step'] : null,
                             "min"  => isset($field['min']) ? $field['min'] : null,
                             "max"  => isset($field['max']) ? $field['max'] : null,
+                            "buttons"  => isset($field['buttons']) ? $field['buttons'] : null,
                         ])
                         @error(strtolower($field['display_name']))
                             <span class="text-rose-500">
@@ -86,7 +88,8 @@
         @include('templates.component_layouts.alerts.base', [
             "message" => "<span class='font-bold'> It is recommended that you change the default pin. </span> <br/><br/> <span class='text-xs opacity-60'> That pin is useful to edit or confirm your reservation. </span>",
             "icon" => "bi-info-circle-fill",
-            "icon_position" => "top"
+            "icon_position" => "top",
+            "custom_classes" => "ss gradient-1"
         ])
     </div>
 </div>

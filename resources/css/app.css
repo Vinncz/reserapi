@@ -17,6 +17,10 @@
     * {
         color-scheme: dark;
     }
+
+    .gradient-1 {
+        background: linear-gradient(30deg, rgb(30 41 59) 20%, rgb(39 24 98) 90%);
+    }
 }
 
 @font-face {
@@ -45,6 +49,14 @@ html {
     border-color: inherit;
     transition: 0.125s ease-in-out;
     word-wrap: break-word;
+}
+
+.ss {
+    font-family: "IBM Plex Sans";
+}
+
+.gradient-1 {
+    background: linear-gradient(30deg, rgb(192 204 215) 20%, rgb(226 232 240) 90%)!;
 }
 
 .code {

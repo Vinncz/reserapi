@@ -17,13 +17,14 @@ return new class extends Migration
             $table->comment('master table for book-able rooms');
             $table->integer('id', true);
             $table->string('name', 512)->nullable()->default('unnamed_room')->comment('the name of the room');
-            $table->string('location', 2048)->nullable()->default('{ floor: undefined, landmark: undefined, }')->comment('JSON as follows:
+            $table->string('announcement', 2048)->nullable()->default('{ [null ] }');
+            $table->string('location', 1024)->nullable()->default('{ floor: null, landmark: null, }')->comment('JSON as follows:
 {
   floor: number,
   landmark?: string,
 }');
             $table->integer('capacity')->nullable()->default(0)->comment('how many person can fit?');
-            $table->string('facilities', 2048)->nullable()->default('{ facilities: undefined, }')->comment('JSON as follows:
+            $table->string('facilities', 2048)->nullable()->default('{ facilities: null, }')->comment('JSON as follows:
 {
   facilities: [
     name,

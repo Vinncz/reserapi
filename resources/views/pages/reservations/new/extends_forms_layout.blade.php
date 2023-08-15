@@ -5,14 +5,15 @@
         [
             "display_name" => "Subject",
             "field_type" => FieldTypes::STRING,
+            "max" => 1022,
             "required" => true,
             "options" => $rooms,
             "placeholder" => "Brainstorming Summer Event Ideas",
         ],
         [
             "display_name" => "Room",
-            "init_value" => 1,
-            "field_type" => FieldTypes::RADIO,
+            "init_value" => 0,
+            "field_type" => FieldTypes::SELECT,
             "options" => $rooms,
         ],
         [
@@ -35,6 +36,7 @@
                     "display_name" => "Duration",
                     "required" => true,
                     "field_type" => FieldTypes::NUMBER,
+                    "buttons" => true,
                     "step" => 15,
                     "init_value" => 30,
                     "min" => 15,
@@ -42,10 +44,11 @@
             ]
         ],
         [
-            "display_name" => "Remark",
+            "display_name" => "Importance",
             "required" => false,
-            "field_type" => FieldTypes::TEXT,
-            "placeholder" => "Don't forget to prepare the subject beforehand...",
+            "field_type" => FieldTypes::RADIO,
+            "options" => $priorities,
+            "init_value" => 3
         ],
         [
             "display_name" => "PIN",
@@ -53,6 +56,14 @@
             "field_type" => FieldTypes::NUMBER,
             "init_value" => 123456,
             "min" => 000000,
+            "max" => 999999,
+        ],
+        [
+            "display_name" => "Remark",
+            "required" => false,
+            "field_type" => FieldTypes::TEXT,
+            "max" => 2046,
+            "placeholder" => "Don't forget to prepare the subject beforehand...",
         ],
     ];
 ?>

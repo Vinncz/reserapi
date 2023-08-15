@@ -10,6 +10,7 @@
 <div class="border-2 p-4 rounded-md flex items-center gap-4
             {{ isset($light_classes) ? $light_classes : "text-slate-600 border-none bg-slate-200" }}
             {{ isset($dark_classes) ? $dark_classes : "dark:text-slate-300 dark:bg-slate-800" }}
+            {{ isset($custom_classes) ? $custom_classes : null }}
             !bg-opacity-60 backdrop-blur-xl">
     @if (isset($icon) && strlen($icon) > 0)
         <i class="@if ($icon_position == 'top') hidden @endif text-2xl bi {{ $icon }} h-full @if (isset($title) && strlen($title) > 0) mt-[-7.5px] @endif"></i>

@@ -51,7 +51,7 @@
 
                 <span class="flex flex-col">
                     <span class="text-xs code opacity-25 select-none tracking-tight w-fit scale-75 ml-[-11px]"> RESERVER NAME </span>
-                    <span class="text-3xl font-extrabold text-slate-600 dark:text-amber-400 tracking-wide" style=""> {{ $reservation->reserver_name }} </span>
+                    <span class="text-3xl font-extrabold text-slate-600 dark:text-amber-400 tracking-wide" style=""> {{ $reservation->User->name }} </span>
                 </span>
 
             </div>
@@ -170,7 +170,7 @@
             </span>
             <span class="flex flex-col">
                 <span class="text-xs code opacity-25 select-none tracking-tight"> ROOM ANNOUNCEMENTS </span>
-                <textarea class="p-4 rounded-xl mt-2 border text-xs bg-transparent transition-none dark:bg-zinc-800" style="">{{ $reservation->remark }}</textarea>
+                <textarea class="p-4 rounded-xl mt-2 border text-xs bg-transparent transition-none dark:bg-zinc-800" style="">{{ $reservation->Room->announcement }}</textarea>
             </span>
             <span class="flex flex-col">
                 <span class="text-xs code opacity-25 select-none tracking-tight"> CAPACITY </span>
