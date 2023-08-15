@@ -37,7 +37,15 @@
                                 "placeholder"   => isset($nested['placeholder']) ? $nested['placeholder'] : null,
                                 "required"   => isset($nested['required']) ? $nested['required'] : null,
                                 "step"   => isset($nested['step']) ? $nested['step'] : null,
+                                "min"   => isset($nested['min']) ? $nested['min'] : null,
+                                "max"   => isset($nested['max']) ? $nested['max'] : null,
                             ])
+
+                            @error(strtolower($nested['display_name']))
+                                <span class="text-rose-500">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                     @endforeach
 
@@ -53,7 +61,14 @@
                             "placeholder"  => isset($field['placeholder']) ? $field['placeholder'] : null,
                             "required"  => isset($field['required']) ? $field['required'] : null,
                             "step"  => isset($field['step']) ? $field['step'] : null,
+                            "min"  => isset($field['min']) ? $field['min'] : null,
+                            "max"  => isset($field['max']) ? $field['max'] : null,
                         ])
+                        @error(strtolower($field['display_name']))
+                            <span class="text-rose-500">
+                                {{ $message }}
+                            </span>
+                        @enderror
                     </div>
 
                 @endif

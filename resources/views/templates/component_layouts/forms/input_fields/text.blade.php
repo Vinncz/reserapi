@@ -4,9 +4,7 @@
     class="{{ $input_classes }} @error(strtolower($display_name)) {{ $error_classes }} @enderror"
     type="text"
     placeholder="{{ $placeholder }}"
-    @if(isset( $init_value ))
-        value="{{ $init_value }}"
-    @endif
+    value="{{ null !== old(strtolower($display_name)) ? old(strtolower($display_name)) : (isset( $init_value ) ? $init_value : null) }}"
     @if(isset( $required ))
         required
     @endif

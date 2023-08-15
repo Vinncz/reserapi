@@ -11,7 +11,7 @@
         ],
         [
             "display_name" => "Room",
-            "required" => true,
+            "init_value" => 1,
             "field_type" => FieldTypes::RADIO,
             "options" => $rooms,
         ],
@@ -23,6 +23,7 @@
                     "required" => true,
                     "field_type" => FieldTypes::DATETIME,
                     "init_value" => now(),
+                    "min" => now(),
                 ],
                 // [
                 //     "display_name" => "End",
@@ -36,6 +37,7 @@
                     "field_type" => FieldTypes::NUMBER,
                     "step" => 15,
                     "init_value" => 30,
+                    "min" => 15,
                 ],
             ]
         ],
@@ -49,7 +51,8 @@
             "display_name" => "PIN",
             "required" => true,
             "field_type" => FieldTypes::NUMBER,
-            "init_value" => 123456
+            "init_value" => 123456,
+            "min" => 000000,
         ],
     ];
 ?>

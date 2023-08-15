@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
-use App\Http\Requests\StoreReservationRequest;
-use App\Http\Requests\UpdateReservationRequest;
+use Illuminate\Http\Request;
 use App\Models\Room;
-use Symfony\Component\HttpFoundation\Request;
 
 class ReservationController extends Controller
 {
@@ -36,7 +34,16 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        dd(request(), auth()->user()->name);
+        $safe_data = $request->validate([
+            'subject' => ['bail', 'required', 'min:8'],
+            'room' => ['bail', 'required', 'exists:rooms,id'],
+            'start' => ['bail', 'required', 'date', 'date_format:Y-m-d\TH:i'],
+            'duration' => ['bail', 'required'],
+            // 'remark' => ['bail'],
+            'pin' => 'numeric|min:000000|max:999999|digits:6',
+        ]);
+
+        dd($safe_data, auth()->user()->name);
     }
 
     /**

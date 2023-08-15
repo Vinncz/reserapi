@@ -3,7 +3,7 @@
         throw new Error ($a . "`options`" . $b);
     }
 
-    // $error_classes = "!bg-rose-200 border-rose-500 text-rose-700 dark:!bg-rose-950 dark:border-rose-500 dark:text-rose-200";
+    // $error_classes = " peer-checked:bg-rose-300 dark:peer-checked:bg-rose-700 ";
 
     $input_classes = "hidden peer";
     $label_classes = "text-sm cursor-pointer w-full px-4 py-3 h-full select-none
@@ -19,14 +19,14 @@
                 value="{{ strtolower($opt->id) }}"
                 class="{{ $input_classes }} @error(strtolower($display_name)) {{ $error_classes }} @enderror"
                 type="radio"
-                @if(isset( $init_value ))
-                    value="{{ $init_value }}"
+                @if(isset( $init_value ) && $init_value == $opt->id)
+                    checked
                 @endif
                 @if(isset( $required ))
                     required
                 @endif
             >
-            <label class="{{ $label_classes }} @error(strtolower($display_name)) {{ $error_classes }} @enderror" for="{{ strtolower($opt->name) }}">
+            <label class="{{ $label_classes }} @error(strtolower($display_name)) {{ $error_classes }} peer-checked:!bg-rose-300 dark:peer-checked:!bg-rose-700 @enderror" for="{{ strtolower($opt->name) }}">
                 {{ $opt->name }}
             </label>
         </div>

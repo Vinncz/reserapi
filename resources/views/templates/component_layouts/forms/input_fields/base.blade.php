@@ -11,7 +11,7 @@
         throw new Error($a . "`field_type`" . $b);
     }
 
-    $error_classes = "!bg-rose-200 border-rose-500 dark:text-rose-700 dark:!bg-rose-950 dark:border-rose-500 dark:placeholder:text-rose-700 dark:text-rose-200 placeholder:text-rose-300";
+    $error_classes = "!bg-rose-200 border-rose-500 dark:!bg-rose-950 dark:border-rose-500 dark:placeholder:text-rose-700 dark:text-rose-200 placeholder:text-rose-300";
 
     $label_classes = "opacity-1030 select-none";
     $input_classes = "border-b p-3 px-3 rounded-none placeholder:text-zinc-200
