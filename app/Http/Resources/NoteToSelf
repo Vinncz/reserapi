@@ -1,0 +1,68 @@
+The point of having Resource Folder ialah untuk mengubah
+Collections milik laravel menjadi JSON.
+
+Namun, folder Resource ini bisa dijadikan tempat file
+yang digunakan sebagai format.
+
+Format ini nanti akan dipakai Controller saat
+return sebuah data.
+
+Anggaplah sebuah kasus dimana terdapat demikian:
+
+Contoh pada Controller:
+    public function Store(StoreTaskRequest $request) {
+        // pertanyaan: gimana dia bisa tau kalau si method validated akan nembak ke file yang benar pada folder Request?
+        $request->validated($request->all());
+
+        $task = Task::create([
+            'user_id' => Auth::user()->id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'priority' => $request->priority,
+        ]);
+
+        // method pada controller akan
+        // menggunakan Resource sebagai
+        // format ia mengembalikan data
+        return new TaskResource($task);
+    }
+
+Contoh pada folder Resource:
+    public function toArray($request) {
+        // disini kita define bagaimana
+        // datanya akan tampil.
+
+        // question: bagaimana kalo gw mau pakai format yang berbeda-beda?
+        //           kan function toArray hanya ada satu?
+        return [
+            "id": (string) $this->id,
+            "attributes" => [
+                "name" => $this->name,
+                "description" => $this->description,
+                "priority" => $this->priority,
+            ]
+        ]
+    }
+
+// Contoh pada folder Request:
+//     pulic function rules() {
+//         return [
+//             "name" => ["required", "max:255"],
+//             "description" => ["required"],
+//             "priority" => ["required"],
+//         ]
+//     }
+
+Saat diliat User:
+    {
+        "data": [
+            {
+                "id": "55",
+                "attributes": {
+                    "name": "Joko",
+                    "description": "sedang makan nasi padang",
+                    "priority": "high",
+                }
+            }
+        ]
+    }
