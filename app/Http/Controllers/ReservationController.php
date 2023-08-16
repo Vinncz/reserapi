@@ -43,8 +43,9 @@ class ReservationController extends Controller
         $validated_data = $request->validate([
             'subject' => ['bail', 'required', 'min:8', 'max:1022'],
             'room' => ['bail', 'required', 'exists:rooms,id'], // is actually room_id
-            'start' => ['bail', 'required', 'date', 'date_format:Y-m-d\TH:i'],
-            'duration' => ['bail', 'required'], // in mins
+            'start' => ['bail', 'required', 'date', 'date_format:Y-m-d H:i'],
+            'duration' => ['bail', 'required', 'numeric', 'max:300'], // in mins
+            'importance' => ['bail', 'required', 'exists:priorities,id'],
             'remark' => ['bail', 'max:2046'],
             'pin' => 'numeric|min:000000|max:999999|digits:6',
         ]);
@@ -69,7 +70,7 @@ class ReservationController extends Controller
             ->where('start', '>', $start_time)
             ->where('start', '<', $end_time)
             ->get();
-        //
+
         if ($overlappingExistingBookings != null || $overlappingLaterBookings != null) {
             if ( $overlappingExistingBookings != null && sizeof($overlappingExistingBookings) > 0 )
                 return redirect()->back()->with('fatal-error', "Booking overlaps with existing bookings for room ".Room::find($validated_data["room"])->name.". " . $overlappingExistingBookings)->withInput();
@@ -77,19 +78,30 @@ class ReservationController extends Controller
                 return redirect()->back()->with('fatal-error', "Booking overlaps with a later scheduled bookings for room ".Room::find($validated_data["room"])->name.". " . $overlappingLaterBookings)->withInput();
         }
 
+        /**
+         * Ketika semuanya sudah tervalidasi,
+         * kita tahu datanya aman.
+         */
+
         $safe_data = $validated_data;
+
+        /**
+         * Prepare untuk masukkin datanya
+         * kedalam database.
+         */
 
         $res = new Reservation;
         $res->room_id = $safe_data["room"];
         $res->user_id = auth()->user()->id;
         $res->subject = $safe_data["subject"];
-        $res->priority_id = 3;
+        $res->priority_id = $safe_data["importance"];
         $res->start = $start_time;
         $res->end = $end_time;
         $res->remark = $safe_data["remark"];
         $res->pin = $safe_data["pin"];
 
         $success = $res->save();
+
         if ($success)
             return redirect('/reservations/my')->with('reservation-made-event', "Successfully reserved ".Room::find($safe_data['room'])->name." for ".$safe_data["duration"]." minutes.");
         else

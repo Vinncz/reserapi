@@ -1,6 +1,12 @@
 @include('templates.component_layouts.forms.field_types')
 
 <?php
+    $now = strtotime(now());
+    $frac = 900;
+    $r =  $now % $frac;
+    $new_time = $now + ($frac-$r);
+    $new_date = date('d-M-Y g:i:s A', $new_time);
+
     $fields = [
         [
             "display_name" => "Subject",
@@ -13,6 +19,7 @@
         [
             "display_name" => "Room",
             "init_value" => 0,
+            "required" => true,
             "field_type" => FieldTypes::SELECT,
             "options" => $rooms,
         ],
@@ -23,8 +30,8 @@
                     "display_name" => "Start",
                     "required" => true,
                     "field_type" => FieldTypes::DATETIME,
-                    "init_value" => now(),
-                    "min" => now(),
+                    "init_value" => $new_date,
+                    "min" => $new_date,
                 ],
                 // [
                 //     "display_name" => "End",
@@ -71,3 +78,7 @@
 @extends('templates.component_layouts.forms.base', [
     "postback_address" => "/reservations/new",
 ])
+
+{{-- <x-forms.form postback_address="/reservations/new">
+    apsmfpandongondagon
+</x-forms.form> --}}

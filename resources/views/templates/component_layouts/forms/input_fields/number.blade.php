@@ -30,8 +30,8 @@
 
     @if (isset($buttons) && $buttons)
         <div class="right-0 top-0 h-full flex w-[75px] justify-center">
-            <button id="{{ "decrement_input_".strtolower($display_name) }}" type="button" class="dark:hover:bg-zinc-700 p-1 px-4 pb-0 h-full w-full {{ $input_classes }}">-</button>
-            <button id="{{ "increment_input_".strtolower($display_name) }}" type="button" class="dark:hover:bg-zinc-700 p-1 px-4 pb-0 h-full w-full {{ $input_classes }}">+</button>
+            <button id="{{ "decrement_input_".strtolower($display_name) }}" type="button" class="dark:hover:bg-zinc-700 p-2 px-4 h-full w-full {{ $input_classes }}">-</button>
+            <button id="{{ "increment_input_".strtolower($display_name) }}" type="button" class="dark:hover:bg-zinc-700 p-2 px-4 h-full w-full {{ $input_classes }}">+</button>
         </div>
     @endif
 </div>

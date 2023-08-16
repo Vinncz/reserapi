@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css?family=JetBrains+Mono');
 @import url('https://gatsby.carbondesignsystem.com/fonts/IBMPlexSansLatin-VF.woff2');
 @import url(./table.css);
+@import url(./datetime.css);
 
 @tailwind base;
 @tailwind components;
@@ -51,7 +52,7 @@ html {
     word-wrap: break-word;
 }
 
-.ss {
+.carbon {
     font-family: "IBM Plex Sans";
 }
 

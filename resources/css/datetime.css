@@ -1,0 +1,30 @@
+.flatpickr-calendar {
+    border-radius: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    padding: 1rem !important;
+    width: fit-content !important;
+    height: fit-content !important;
+    font-family: "IBM Plex Sans";
+    
+}
+
+.flatpickr-current-month {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 !important;
+    font-weight: 700 !important;
+}
+
+.flatpickr-month {
+    margin-bottom: 0.75rem !important;
+
+}
+
+@media (prefers-color-scheme: light) {
+    .flatpickr-calendar {
+        -webkit-box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6, 0 -1px 0 #e6e6e6, 0 3px 13px rgba(0,0,0,0.08) !important;
+        box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6, 0 -1px 0 #e6e6e6, 0 3px 13px rgba(0,0,0,0.08) !important;
+    }
+}

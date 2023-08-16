@@ -14,5 +14,4 @@
     @if(isset( $min ))
         minlength="{{ $min }}"
     @endif
-
 >
