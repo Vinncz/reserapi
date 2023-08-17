@@ -40,7 +40,7 @@
 
     {{-- @include($common_path."text") --}}
     {{-- pass param yang depannya ":" itu diterima sama class miliknya component/forms/input-fields/Text --}}
-    <x-forms.input-fields.text :name="$display_name" />
+    <x-forms.input-fields.text name="{{ $display_name }}" placeholder="{!! $placeholder !!}" />
 
 @elseif ( $field_type == FieldTypes::TEXT )
 
@@ -56,7 +56,8 @@
 
 @elseif ( $field_type == FieldTypes::NUMBER )
 
-    @include($common_path."number")
+    {{-- ALWAYS pakai : didepannya --}}
+    <x-forms.input-fields.number  :value="$init_value" :required="true" :max="300" :useOldValues="true" :enableButtons="isset($buttons) && $buttons ? $buttons : false" :min="$min" :step="$step" :name="$display_name" :placeholder="$placeholder" />
 
 @elseif ( $field_type == FieldTypes::DATETIME )
 

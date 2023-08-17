@@ -43,6 +43,7 @@
                     "display_name" => "Duration",
                     "required" => true,
                     "field_type" => FieldTypes::NUMBER,
+                    "enable_buttons" => true,
                     "buttons" => true,
                     "step" => 15,
                     "init_value" => 30,

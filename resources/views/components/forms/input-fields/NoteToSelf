@@ -1,0 +1,5 @@
+Untuk semua komponen, kalo logika milik properties diatur
+sama class-nya milik sebuah component,
+
+MAKA PASTIKAN kalo semua attribut yang di kirim
+menggunakan : didepannya.

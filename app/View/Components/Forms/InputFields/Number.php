@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Text extends Component
+class Number extends Component
 {
     /**
      * Daripada nulis properties-nya berulang kali,
@@ -14,23 +14,23 @@ class Text extends Component
      */
     use InputFieldProperties;
 
-    /**
-     * Property yang required taruh sini.
-     * Sisanya kasih default.
-     *
-     * Disable all those that didn't get used
-     */
     public function __construct($name,
                                 $id = null,
                                 $placeholder = null,
-                                $value = null,
+                                $value = 0,
                                 $required = false,
-                                $max = null,
-                                $min = null,
-                                // $step = null,
-                                $use_old_values = true,
-                                // $enable_buttons = true,
+                                $max = 2147483647,
+                                $min = 0,
+                                $step = 1,
+                                $useOldValues = true,
+                                $enableButtons = false,
     ) {
+        // dd($enableButtons);
+
+        if ($enableButtons == false) {
+            
+        }
+
         $name = strtolower($name);
         $this->name = $name;
         $this->id = ( $id == null ) ? $name : $id;
@@ -39,9 +39,9 @@ class Text extends Component
         $this->required = $required;
         $this->max = $max;
         $this->min = $min;
-        // $this->step = $step;
-        $this->use_old_values = $use_old_values;
-        // $this->enable_buttons = $enable_buttons;
+        $this->step = $step;
+        $this->use_old_values = $useOldValues;
+        $this->enable_buttons = $enableButtons;
     }
 
     /**
@@ -49,6 +49,6 @@ class Text extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.forms.input-fields.text');
+        return view('components.forms.input-fields.number');
     }
 }

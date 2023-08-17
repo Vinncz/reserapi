@@ -1,31 +1,21 @@
-@props([
-    "name",
-    "id" => null,
-    "class" => null,
-    "placeholder" => null,
-    "init_value" => null,
-    "required" => false,
-    "max" => null,
-    "min" => null,
-    "use_old_values" => false,
-])
-
-<?php $name = strtolower($name); ?>
+<?php
+    $value = $use_old_values && old($name) !== null ? old($name) : $init_value;
+?>
 
 <input
+    {{-- {{
+        $attributes->merge([
+            "class" => $class,
+        ])
+    }} --}}
     name="{{ $name }}"
-    id="{{ isset($id) ? $id : $name }}"
+    id="{{ $id }}"
     placeholder="{{ $placeholder }}"
-    value="{{
-        null !== old($name) ?
-            old($name)
-            : (  isset($init_value) ? $init_value : null  )
-    }}"
+    value="{{ $value }}"
     class="
         {{ $class }}
-        {{ $inherited_classes }}
         @error($name)
-            {{ $inherited_error_classes }}
+            {{ $error_class }}
         @enderror
     "
     type="text"
