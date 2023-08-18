@@ -43,8 +43,12 @@ class ReservationController extends Controller
         $validated_data = $request->validate([
             'subject' => ['bail', 'required', 'min:8', 'max:1022'],
             'room' => ['bail', 'required', 'exists:rooms,id'], // is actually room_id
-            'start' => ['bail', 'required', 'date', 'date_format:Y-m-d H:i'],
-            'duration' => ['bail', 'required', 'numeric', 'max:300'], // in mins
+            'start' => ['bail', 'required', 'date', 'date_format:Y-m-d H:i', 'after_or_equal:'.date("Y-m-d H:i", strtotime("-5 minutes", strtotime("now")))],
+            'duration' => ['bail', 'required', 'numeric', 'max:300', function ($attribute, $value, $fail) {
+                if ($value % 15 !== 0) {
+                    $fail($attribute.' must be divisible by 15.'); // your message
+                }
+            }], // in mins
             'importance' => ['bail', 'required', 'exists:priorities,id'],
             'remark' => ['bail', 'max:2046'],
             'pin' => 'numeric|min:000000|max:999999|digits:6',

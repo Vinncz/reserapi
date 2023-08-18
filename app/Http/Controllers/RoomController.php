@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use App\Models\Room;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
@@ -42,6 +43,7 @@ class RoomController extends Controller
     {
         return view('pages.rooms.id.index', [
             "room" => $room,
+            "schedule" => Reservation::with("User", "Room", "Priority")->where("room_id", "=", $room->id)->paginate(8),
         ]);
     }
 
