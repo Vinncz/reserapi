@@ -3,7 +3,10 @@
 
 ![reservations page](https://i.ibb.co/HxWkM1B/image.png)
 ![reservations page](https://i.ibb.co/SJz6zcT/image.png)
-![reservations page](https://i.ibb.co/W562LYj/image.png)
+![reservations page](https://i.ibb.co/KxfXX2p/image.png)
+![reservations page](https://i.ibb.co/xYF5bL0/image.png)
+![reservations page](https://i.ibb.co/6DzkvR0/image.png)
+
 
 `Reserapi` is the dedicated backend for `Reservio`: an intuitive room booking application. It is made using laravel, but has its own user interface.
 
