@@ -93,6 +93,8 @@
                 "step"   => isset($field['step']) ? $field['step'] : null,
             ])
 
+            {{-- <x-forms.input-fields.text :name="$field['display_name']" :placeholder="$field['display_name']" :required="true" /> --}}
+
             @error(strtolower($field['display_name']))
                 <span class="flex mt-[-4px] text-red-700">
                     {{ $message }}

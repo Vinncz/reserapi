@@ -25,10 +25,9 @@ class Number extends Component
                                 $useOldValues = true,
                                 $enableButtons = false,
     ) {
-        // dd($enableButtons);
 
-        if ($enableButtons == false) {
-            
+        if ($max == null || $max < $min) {
+            $max = 2147483647;
         }
 
         $name = strtolower($name);

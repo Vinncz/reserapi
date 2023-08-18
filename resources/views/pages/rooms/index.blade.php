@@ -2,18 +2,18 @@
 
 @section('children')
     @include('templates.globals.page_title', ["title" => "All Rooms"])
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 sm:border rounded-xl sm:p-6 gap-4">
+    <div class="carbon grid sm:grid-cols-2 md:grid-cols-3 gap-4">
         @foreach($rooms as $room)
-            <a href="/rooms/id/{{ $room->id }}" class="dark:bg-zinc-800 bg-slate-100 rounded flex flex-col overflow-hidden">
-                <upper-card class="border-b absolute aspect-square">
-                    <img class="w-[100%] h-[100%] object-cover" src="http://picsum.photos/400/300" alt="template-photos">
+            <a href="/rooms/id/{{ $room->id }}" class="flex rounded flex-col peer overflow-hidden h-fit group dark:hover:bg-zinc-900 hover:bg-slate-200">
+                <upper-card class="group-hover:brightness-75 dark:group-hover:brightness-125 aspect-[2/1] rounded-lg overflow-hidden">
+                    <img class="w-full h-full object-cover" src="http://picsum.photos/400/300" alt="template-photos">
                 </upper-card>
-                <lower-card class="mt-[100%] px-3 p-2 sm:p-3 sm:px-4 md:p-4 flex flex-col gap-2">
-                    <span class="text-lg font-bold">
-                        {{ $room->name }}
+                <lower-card class="flex flex-col gap-1 p-3">
+                    <span class="font-bold">
+                        {{ $room->name }} Room
                     </span>
-                    <span class="">
-                        Floor {{ json_decode($room->location)->floor }}
+                    <span class="text-sm">
+                        Floor {{ json_decode($room->location)->floor }}, near {{ strtolower(json_decode($room->location)->landmark) }}
                     </span>
                 </lower-card>
             </a>

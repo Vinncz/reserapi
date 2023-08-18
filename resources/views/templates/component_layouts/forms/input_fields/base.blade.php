@@ -1,3 +1,5 @@
+{{-- THIS FILE IS MARKED TO BE REPLACED WITH COMPONENTS --}}
+
 <?php
     $a = "Attribute ";
     $b = " must be declared/passed as parameter.";
@@ -57,7 +59,7 @@
 @elseif ( $field_type == FieldTypes::NUMBER )
 
     {{-- ALWAYS pakai : didepannya --}}
-    <x-forms.input-fields.number  :value="$init_value" :required="true" :max="300" :useOldValues="true" :enableButtons="isset($buttons) && $buttons ? $buttons : false" :min="$min" :step="$step" :name="$display_name" :placeholder="$placeholder" />
+    <x-forms.input-fields.number  :value="$init_value" :required="true" :max="$max" :useOldValues="true" :enableButtons="isset($buttons) && $buttons ? $buttons : false" :min="$min" :step="$step" :name="$display_name" :placeholder="$placeholder" />
 
 @elseif ( $field_type == FieldTypes::DATETIME )
 

@@ -37,13 +37,13 @@
         ]
     ];
 
-    $element_classes = "hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded px-4 py-2 ";
+    $element_classes = "font-bold hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded px-4 py-2 ";
 ?>
 {{-- @dd($path) --}}
-<navbar class="w-full border-b py-5 justify-center items-center flex">
+<navbar class="w-full border-b py-3 justify-center items-center flex">
     <navbar_wrapper style="" class="select-none px-5 max-w-5xl w-full flex relative items-center gap-10 text-xs">
-        <a class="font-bold text-lg" href="/"> Reserapi™ </a>
-        <div class="flex gap-2 font-bold max-sm:hidden">
+        <a class="font-bold text-base" href="/"> Reserapi™ </a>
+        <div class="flex gap-2 text-xs max-sm:hidden">
             @foreach ($links as $link)
                 <?php $temp_element_classes = $element_classes ?>
 
@@ -73,9 +73,9 @@
                     <i class="text-2xl bi bi-person-circle text-rose-400"></i>
                 </a>
             @else
-                <a class="overflow-hidden max-sm:hidden flex border hover:outline-zinc-300 dark:hover:outline-zinc-700 hover:outline rounded-full aspect-square items-center justify-center w-[35px] h-[35px]" href="/dashboard" alt="dashboard">
+                <a class="overflow-hidden max-sm:hidden flex border hover:outline-zinc-300 dark:hover:outline-zinc-700 hover:outline rounded-full aspect-square items-center justify-center w-[30px] h-[30px]" href="/dashboard" alt="dashboard">
                     <?php $two_letters = Str::upper(substr(auth()->user()->name, 0, 1) . substr(auth()->user()->name, -1)) ?>
-                    <span class="text-xl p-2 font-bold text-center hover:bg-zinc-300 dark:hover:bg-zinc-800"> {{ $two_letters }} </span>
+                    <span class="text-base p-2 font-bold text-center hover:bg-zinc-300 dark:hover:bg-zinc-800"> {{ $two_letters }} </span>
                 </a>
             @endauth
         </div>

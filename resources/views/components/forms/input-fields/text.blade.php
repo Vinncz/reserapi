@@ -3,21 +3,21 @@
 ?>
 
 <input
-    {{-- {{
+    {{
         $attributes->merge([
-            "class" => $class,
+            "class" => $class . ($errors->has($name) ? $error_class : ''),
         ])
-    }} --}}
+    }}
     name="{{ $name }}"
     id="{{ $id }}"
     placeholder="{{ $placeholder }}"
     value="{{ $value }}"
-    class="
+    {{-- class="
         {{ $class }}
         @error($name)
             {{ $error_class }}
         @enderror
-    "
+    " --}}
     type="text"
     {{ $required ? "required" : "" }}
     maxlength="{{ $max }}"
