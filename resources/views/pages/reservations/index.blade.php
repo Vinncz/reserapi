@@ -19,7 +19,9 @@
                 <th class=""> Remark            </th>
             </tr>
 
+            <?php $printed = false ?>
             @foreach ($ongoing as $reservation)
+                <?php $printed = true ?>
                 <tr class="cursor-pointer" onclick="window.location.assign(`/reservations/id/{{ $reservation['id'] }}`)">
                     {{-- <td class="tiny-content"> {{ $reservation->id }}               </td> --}}
                     <td class="small-content"> {{ $reservation->Room->name }}         </td>
@@ -47,6 +49,12 @@
                     <td class="large-content"> {{ $reservation->remark }}          </td>
                 </tr>
             @endforeach
+
+            @if (!$printed)
+                <tr class="" onclick="">
+                    <td colspan="7" rowspan="2" class="py-16 pb-20 text-center"> Every room is available right now. <br><br> <a href="/reservations/new" class="px-6 py-2 rounded bg-green-700 hover:bg-green-900 text-white font-bold text-sm tracking-wider"> Make a reservation </a> </td>
+                </tr>
+            @endif
         </table>
     </div>
 
@@ -71,7 +79,10 @@
                 <th class=""> Remark            </th>
             </tr>
 
+            <?php $printed = false ?>
             @foreach ($upcoming as $reservation)
+                <?php $printed = true ?>
+
                 <tr class="cursor-pointer" onclick="window.location.assign(`/reservations/id/{{ $reservation['id'] }}`)">
                     {{-- <td class="tiny-content"> {{ $reservation->id }}               </td> --}}
                     <td class="small-content"> {{ $reservation->Room->name }}         </td>
@@ -99,6 +110,13 @@
                     <td class="large-content"> {{ $reservation->remark }}          </td>
                 </tr>
             @endforeach
+
+            @if (!$printed)
+                <tr class="" onclick="">
+                    <td colspan="7" rowspan="2" class="py-16 pb-20 text-center"> Every room is available right now. <br><br> <a href="/reservations/new" class="px-6 py-2 rounded bg-green-700 hover:bg-green-900 text-white font-bold text-sm tracking-wider"> Make a reservation </a> </td>
+                </tr>
+            @endif
+
         </table>
     </div>
 

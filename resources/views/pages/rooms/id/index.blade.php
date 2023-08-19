@@ -38,12 +38,24 @@
 
             <span class="gap-3 flex items-center">
                 <i class="bi bi-people-fill absolute top-[-4px] font-bold pr-3 py-1.5 aspect-square"></i>
-                <span class="ml-12"> Suitable for {{ $room->capacity }} persons or less. </span>
+                <span class="ml-12"> Suitable for {{ $room->capacity }} people or less. </span>
             </span>
 
             <span class="gap-3 flex items-center">
                 <i class="bi bi-collection-fill absolute top-[-4px] font-bold pr-3 py-1.5 aspect-square"></i>
-                <span class="ml-12"> Equipped with @foreach (json_decode($room->facilities)->facilities as $a) {{ $a }}, @endforeach </span>
+                <span class="ml-12">
+                    Equipped with a
+
+                    <?php $size = sizeof(json_decode($room->facilities)->facilities); $counter = 0; ?>
+                    @foreach (json_decode($room->facilities)->facilities as $a)
+                        @if($counter == $size - 1)
+                            and a <span class="tracking-wide font-bold underline dark:text-sky-300 text-sky-700">{{ $a }}</span>.
+                        @else
+                            <span class="tracking-wide font-bold underline dark:text-sky-300 text-sky-700">{{ $a }}</span>,
+                        @endif
+                        <?php $counter++ ?>
+                    @endforeach
+                </span>
             </span>
         </div>
 
@@ -115,7 +127,7 @@
 
             @if (!$printed)
                 <tr class="" onclick="">
-                    <td colspan="6" rowspan="2" class="py-16 pb-20 text-center"> There are no booking scheduled for this room. <br><br> <a href="/reservations/new" class="px-6 py-2 rounded bg-green-700 hover:bg-green-900 text-white font-bold text-sm"> Reserve this room </a> </td>
+                    <td colspan="6" rowspan="2" class="py-16 pb-20 text-center"> There are no booking scheduled for this room. <br><br> <a href="/reservations/new" class="px-6 py-2 rounded bg-green-700 hover:bg-green-900 text-white font-bold text-sm tracking-wider"> Reserve this room </a> </td>
                 </tr>
             @endif
         </table>
