@@ -14,8 +14,24 @@ class ReservationController extends Controller
      */
     public function index()
     {
+        // duplicate code. will refactor later (maybe)
+        $ongoing = Reservation::where("end", ">", now())
+                            ->where("start", "<", now())
+                            ->orderBy("start", "asc");
+
         return view('pages/reservations/index', [
-            "reservations" => Reservation::with(["Room", "User", "Priority"])->paginate(8),
+            "upcoming" => Reservation::with(["Room", "User", "Priority"])
+                            ->where("end", ">", now())
+                            ->whereNotIn("id", $ongoing->get("id")->values("id"))
+                            ->orderBy("end", "asc")
+                            ->orderBy("start", "asc")
+                            ->paginate(8),
+            "ongoing" => Reservation::with(["Room", "User", "Priority"])
+                            ->where("end", ">", now())
+                            ->where("start", "<", now())
+                            ->orderBy("end", "asc")
+                            ->orderBy("start", "asc")
+                            ->paginate(8),
         ]);
     }
 
@@ -101,7 +117,7 @@ class ReservationController extends Controller
         $res->priority_id = $safe_data["importance"];
         $res->start = $start_time;
         $res->end = $end_time;
-        $res->remark = $safe_data["remark"];
+        $res->remark = strlen( trim($safe_data["remark"]) ) > 0 ? trim($safe_data["remark"]) : null;
         $res->pin = $safe_data["pin"];
 
         $success = $res->save();

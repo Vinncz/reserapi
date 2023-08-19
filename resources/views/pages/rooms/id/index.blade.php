@@ -1,7 +1,16 @@
 @extends('templates.page_layouts.generic')
 
 @section('children')
-    @include('templates.globals.page_title', ["title" => $room->name." Room"])
+    <div class="flex gap-4 items-center">
+        @include('templates.globals.page_title', ["title" => $room->name." Room"])
+        @if ($occupied)
+            <span class="flex px-6 py-2 h-fit mb-2 rounded-full items-center bg-rose-400 text-rose-800 dark:bg-rose-800 dark:text-rose-200 font-bold text-sm"> Occupied </span>
+        @elseif($will_soon_be_occupied)
+            <span class="flex px-6 py-2 h-fit mb-2 rounded-full items-center bg-orange-400 text-orange-800 dark:bg-orange-800 dark:text-orange-200 font-bold text-sm"> Will Soon be Occupied </span>
+        @else
+            <span class="flex px-6 py-2 h-fit mb-2 rounded-full items-center bg-teal-400 text-teal-800 dark:bg-teal-800 dark:text-teal-200 font-bold text-sm"> Available </span>
+        @endif
+    </div>
 
     <div class="flex w-full h-64 aspect-ratio-[2/3] overflow-hidden rounded-xl dark:bg-zinc-800 bg-zinc-100 shadow mt-4">
         <div class="flex sm:w-[75%] w-full bg-slate-700"></div>
@@ -19,7 +28,7 @@
 
             <span class="gap-3 flex items-center">
                 <i class="bi bi-person-vcard-fill absolute top-[-6px] font-bold pr-3 py-1.5 aspect-square"></i>
-                <span class="ml-11 rounded-full w-fit px-5 py-1 dark:bg-teal-300 bg-zinc-400 text-slate-50 font-bold dark:text-zinc-900 text-[5px]"> RID-00{{ $room->id }} </span>
+                <span class="ml-11 rounded-full w-fit px-5 py-1 dark:bg-teal-300 bg-teal-600 text-slate-50 font-bold dark:text-zinc-900 text-[5px]"> RID-00{{ $room->id }} </span>
             </span>
 
             <span class="gap-3 flex items-center">
@@ -72,7 +81,10 @@
                 <th class=""> Remark            </th>
             </tr>
 
+            <?php $printed = false ?>
             @foreach ($schedule as $reservation)
+                <?php $printed = true ?>
+
                 <tr class="cursor-pointer" onclick="window.location.assign(`/reservations/id/{{ $reservation['id'] }}`)">
                     {{-- <td class="tiny-content"> {{ $reservation->id }}               </td> --}}
                     {{-- <td class="small-content"> {{ $reservation->Room->name }}         </td> --}}
@@ -100,6 +112,12 @@
                     <td class="large-content"> {{ substr($reservation->remark, 0, 35) }} ...          </td>
                 </tr>
             @endforeach
+
+            @if (!$printed)
+                <tr class="" onclick="">
+                    <td colspan="6" rowspan="2" class="py-16 pb-20 text-center"> There are no booking scheduled for this room. <br><br> <a href="/reservations/new" class="px-6 py-2 rounded bg-green-700 hover:bg-green-900 text-white font-bold text-sm"> Reserve this room </a> </td>
+                </tr>
+            @endif
         </table>
 
     </div>
