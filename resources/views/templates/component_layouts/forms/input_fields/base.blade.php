@@ -46,7 +46,7 @@
 
 @elseif ( $field_type == FieldTypes::TEXT )
 
-    @include($common_path."textarea")
+    <x-forms.input-fields.text-area :min="$min"  :value="$init_value" :required="$required" :max="$max" :name="$display_name" :placeholder="$placeholder" />
 
 @elseif ( $field_type == FieldTypes::PASSWORD )
 
@@ -59,7 +59,7 @@
 @elseif ( $field_type == FieldTypes::NUMBER )
 
     {{-- ALWAYS pakai : didepannya --}}
-    <x-forms.input-fields.number  :value="$init_value" :required="true" :max="$max" :useOldValues="true" :enableButtons="isset($buttons) && $buttons ? $buttons : false" :min="$min" :step="$step" :name="$display_name" :placeholder="$placeholder" />
+    <x-forms.input-fields.number  :value="$init_value" :required="true" :max="$max" :useOldValues="true" :enableButtons="isset($buttons) && $buttons ? $buttons : false" :min="$min" :step="isset($step) == true ? $step : 1" :name="$display_name" :placeholder="$placeholder" />
 
 @elseif ( $field_type == FieldTypes::DATETIME )
 
