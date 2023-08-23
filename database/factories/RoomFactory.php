@@ -21,19 +21,15 @@ class RoomFactory extends Factory
             'landmark' => fake()->streetName()
         ]);
 
-        $facilities = json_encode([
-            'facilities' => [
-                "whiteboard",
-                "sound system",
-                "projector"
-            ]
-        ]);
-
         return [
             'name' => fake()->colorName(),
             'location' => $location,
             'capacity' => fake()->numberBetween(6, 32),
-            'facilities' => $facilities
+            'facilities' => json_encode([
+                "whiteboard",
+                "sound system",
+                "projector"
+            ])
         ];
     }
 }

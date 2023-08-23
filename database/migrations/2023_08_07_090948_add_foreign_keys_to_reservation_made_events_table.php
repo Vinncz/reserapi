@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('reservation_made_events', function (Blueprint $table) {
-            $table->foreign(['room_id'], 'reservation_made_events_ibfk_1')->references(['id'])->on('rooms');
-        });
+        // Schema::table('reservation_made_events', function (Blueprint $table) {
+        //     $table->foreign(['room_id'], 'reservation_made_events_ibfk_1')->references(['id'])->on('rooms');
+        // });
     }
 
     /**
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('reservation_made_events', function (Blueprint $table) {
-            $table->dropForeign('reservation_made_events_ibfk_1');
-        });
+        // Schema::table('reservation_made_events', function (Blueprint $table) {
+        //     $table->dropForeign('reservation_made_events_ibfk_1');
+        // });
     }
 };

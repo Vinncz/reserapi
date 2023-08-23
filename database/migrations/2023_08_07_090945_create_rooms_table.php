@@ -16,17 +16,17 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->comment('master table for book-able rooms');
             $table->integer('id', true);
-            $table->string('name', 512)->nullable()->default('unnamed_room')->comment('the name of the room');
-            $table->string('announcement', 2048)->nullable()->default('{ [null ] }');
+            $table->string('name', 512)->nullable()->default('Unnamed Room')->comment('the name of the room');
+            $table->string('announcement', 2048)->nullable()->default('No announcement for this rooom');
             $table->string('location', 1024)->nullable()->default('{ floor: null, landmark: null, }')->comment('JSON as follows:
 {
   floor: number,
   landmark?: string,
 }');
             $table->integer('capacity')->nullable()->default(0)->comment('how many person can fit?');
-            $table->string('facilities', 2048)->nullable()->default('{ facilities: null, }')->comment('JSON as follows:
+            $table->string('facilities', 2048)->nullable()->default('[]')->comment('JSON as follows:
 {
-  facilities: [
+  [
     name,
     name,
     name,
