@@ -15,9 +15,9 @@ class RoomController extends Controller
      * Display a listing of the resource.
      */
     public function index() {
-        return $this->success([RoomResource::collection(
+        return $this->success(RoomResource::collection(
             Room::all(),
-        )]);
+        ));
     }
 
     /**
@@ -32,9 +32,9 @@ class RoomController extends Controller
      * Display the specified resource.
      */
     public function show(Room $room) {
-        return $this->success([RoomResource::make(
+        return $this->success(RoomResource::make(
             $room,
-        )]);
+        ));
     }
 
     /**

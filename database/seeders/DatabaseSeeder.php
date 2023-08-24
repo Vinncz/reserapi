@@ -4,8 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\User;
 use App\Models\Priority;
 use Illuminate\Database\Seeder;
+use Database\Seeders\RoomSeeder;
+use Database\Seeders\UserRoleSeeder;
+use Database\Seeders\ReservationSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,12 +18,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call(UserRoleSeeder::class);
+        User::factory(10)->create();
 
         $a = new Priority;
         $a->name = "Low";
@@ -40,7 +40,6 @@ class DatabaseSeeder extends Seeder
         $e = new Priority;
         $e->name = "High";
         $e->save();
-
 
         $this->call(RoomSeeder::class);
         $this->call(ReservationSeeder::class);

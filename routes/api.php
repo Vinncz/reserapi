@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\AuthenticationController;
+use App\Http\Controllers\API\Auth\AuthenticationController;
 use App\Http\Controllers\API\Reservation\ReservationController;
 use App\Http\Controllers\API\Room\RoomController;
 use Illuminate\Http\Request;
@@ -47,9 +47,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
                 )->name("api/reservations/all");
 
                 Route::get(
+                    "/withRelation",
+                    [ReservationController::class, "withRelation"]
+                )->name("api/reservations/withRelation");
+
+                Route::get(
                     "/id/{reservation}",
                     [ReservationController::class, "show"]
                 )->name("api/reservations/id");
+
+                Route::get(
+                    "/id/{reservation}/withRelation",
+                    [ReservationController::class, "showWithRelation"]
+                )->name("api/reservations/id/withRelation");
 
             });
         });
@@ -99,7 +109,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
                     );
 
                 });
-                
+
             /* Reservations */
                 Route::controller(ReservationController::class)->group(function () {
                     Route::prefix("/reservations")->group(function () {

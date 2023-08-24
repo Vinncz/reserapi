@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class AuthenticationController extends Controller
         ]));
 
         if ( !Auth::attempt($request->only(["email", "password"])) ) {
-            return $this->error("", "Credentials do not match", 401);
+            return $this->error(null, "Credentials do not match", 401);
         }
 
         $user = User::where("email", $request->email)->first();
