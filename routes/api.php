@@ -23,38 +23,54 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 */
 
     /* Auth-related */
-        Route::post(
-            "/login",
-            [AuthenticationController::class, "login"]
-        )->name("api/login");
+        Route::controller(AuthenticationController::class)->group(function () {
 
-        Route::post(
-            "/register",
-            [AuthenticationController::class, "register"]
-        )->name("api/register");
+            Route::post(
+                "/login",
+                [AuthenticationController::class, "login"]
+            )->name("api/login");
+
+            Route::post(
+                "/register",
+                [AuthenticationController::class, "register"]
+            )->name("api/register");
+
+        });
 
     /* Reservations */
-        Route::get(
-            "/reservations/all",
-            [ReservationController::class, "index"]
-        )->name("api/reservations/all");
+        Route::controller(ReservationController::class)->group(function () {
+            Route::prefix("/reservations")->group(function () {
 
-        Route::get(
-            "/reservations/id/{reservation}",
-            [ReservationController::class, "show"]
-        )->name("api/reservations/id");
+                Route::get(
+                    "/all",
+                    [ReservationController::class, "index"]
+                )->name("api/reservations/all");
+
+                Route::get(
+                    "/id/{reservation}",
+                    [ReservationController::class, "show"]
+                )->name("api/reservations/id");
+
+            });
+        });
+
 
     /* Rooms */
-        Route::get(
-            "/rooms/all",
-            [RoomController::class, "index"]
-        )->name("api/rooms/all");
+        Route::controller(RoomController::class)->group(function () {
+            Route::prefix("/rooms")->group(function () {
 
-        Route::get(
-            "/rooms/id/{room}",
-            [RoomController::class, "show"]
-        )->name("api/rooms/id");
+                Route::get(
+                    "/all",
+                    [RoomController::class, "index"]
+                )->name("api/rooms/all");
 
+                Route::get(
+                    "/id/{room}",
+                    [RoomController::class, "show"]
+                )->name("api/rooms/id");
+
+            });
+        });
 
 
 
@@ -75,21 +91,32 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         function () {
 
             /* Auth-related */
-                Route::post(
-                    "/logout",
-                    [AuthenticationController::class, "logout"]
-                );
+                Route::controller(AuthenticationController::class)->group(function () {
 
+                    Route::post(
+                        "/logout",
+                        [AuthenticationController::class, "logout"]
+                    );
+
+                });
+                
             /* Reservations */
-                Route::get(
-                    "/reservations/my",
-                    [ReservationController::class, "my_reservation"]
-                );
+                Route::controller(ReservationController::class)->group(function () {
+                    Route::prefix("/reservations")->group(function () {
 
-                Route::post(
-                    "/reservations/new",
-                    [ReservationController::class, "store"]
-                );
+                        Route::get(
+                            "/my",
+                            [ReservationController::class, "my_reservation"]
+                        );
+
+                        Route::post(
+                            "/new",
+                            [ReservationController::class, "store"]
+                        );
+
+                    });
+                });
+
 
         }
     );
