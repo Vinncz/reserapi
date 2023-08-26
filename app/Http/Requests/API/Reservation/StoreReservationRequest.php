@@ -55,7 +55,7 @@ class StoreReservationRequest extends FormRequest
                                         $minute   = $datetime->format("i");
 
                                         if ($minute % 15 !== 0) {
-                                            $fail($attribute.' must be an interval of 15 minutes'); // your message
+                                            $fail($attribute.' must be in an interval of 15 minutes'); // your message
                                         }
                                     }
                                 ],

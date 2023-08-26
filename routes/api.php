@@ -35,6 +35,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
                 [AuthenticationController::class, "register"]
             )->name("api/register");
 
+            Route::post(
+                "/logout",
+                [AuthenticationController::class, "logout"]
+            )->name("api/logout");
+
         });
 
     /* Reservations */
