@@ -17,7 +17,7 @@ class RoomController extends Controller
     public function index() {
         return $this->success(RoomResource::collection(
             Room::all(),
-        ));
+        ), "Showing every rooms");
     }
 
     /**
@@ -34,7 +34,7 @@ class RoomController extends Controller
     public function show(Room $room) {
         return $this->success(RoomResource::make(
             $room,
-        ));
+        ), "Showing reservation with an id of " . $room->id);
     }
 
     /**
