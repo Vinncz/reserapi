@@ -35,4 +35,14 @@ class LoginUserRequest extends FormRequest
                             ]
         ];
     }
+
+    public function messages() {
+        return [
+            "email.required" => "Field cannot be empty",
+            "email.email"    => "Must be a valid email address",
+
+            "password.required" => "Password cannot be empty",
+            "password.defaults" => "Password must have a minimum of 8 characters and 1 capital letter"
+        ];
+    }
 }
